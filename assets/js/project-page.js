@@ -542,7 +542,7 @@ function mkLink(label, url, type) {
   const cls = { live:'dw-link-live', docs:'dw-link-docs', github:'dw-link-github', preview:'dw-link-preview', external:'dw-link-external' }[type] ?? 'dw-link-external';
   const icon = { live:externalSvg(), docs:docSvg(), github:githubSvg(), preview:monitorSvg(), external:externalSvg() }[type] ?? externalSvg();
   
-  if (type === 'github') {
+  if (type === 'github' || url.includes('pypi.org') || label.toLowerCase().includes('pypi')) {
     return `<a href="${url}" class="dw-link ${cls}" target="_blank" rel="noopener noreferrer">${icon} ${label}</a>`;
   }
   return `<a href="${url}" class="dw-link ${cls}" data-url="${url}" data-type="${type}" data-label="${escHtml(label)}">${icon} ${label}</a>`;

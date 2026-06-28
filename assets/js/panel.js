@@ -195,7 +195,7 @@ function buildLink(label, url, type) {
     external: externalSvg(),
   }[type] ?? externalSvg();
 
-  if (type === 'github') {
+  if (type === 'github' || url.includes('pypi.org') || label.toLowerCase().includes('pypi')) {
     return `<a href="${url}" class="dw-link ${cls}" target="_blank" rel="noopener noreferrer">${icon} ${label}</a>`;
   }
   return `<a href="${url}" class="dw-link ${cls}" data-url="${url}" data-type="${type}" data-label="${escHtml(label)}">${icon} ${label}</a>`;
