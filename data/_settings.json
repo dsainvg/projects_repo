@@ -1,0 +1,76 @@
+{
+  "_comment": "Global settings for proj.dsainvg.me",
+
+  "_project_json_schema": {
+    "_comment": "Full schema for data/projects/<RepoName>.json — all fields are optional unless noted",
+
+    "repoName":   "string   — REQUIRED. Must match GitHub repo name exactly",
+    "icon":       "string   — emoji icon shown on the card and project page",
+    "shortDesc":  "string   — 1-line summary shown on the card",
+    "fullDesc":   "string   — multi-paragraph description. Use \\n\\n for paragraphs, • for bullets",
+
+    "tags":       "string[] — searchable tag chips (e.g. ['AI', 'Python'])",
+    "techStack":  "string[] — tools/frameworks listed on the project page (more detailed than tags)",
+    "highlights": "string[] — 3-5 key achievement bullets shown prominently on the project page",
+
+    "links": [
+      {
+        "label": "string — button label",
+        "url":   "string — full URL",
+        "type":  "live | preview | docs | external   (github added automatically)"
+      }
+    ],
+
+    "reports": [
+      {
+        "title": "string   — display title of the report/paper",
+        "file":  "string   — path relative to /data/projects/, e.g. NERVI/reports/paper.pdf",
+        "desc":  "string   — one-line description shown under the title",
+        "date":  "string   — e.g. 'June 2025' or '2025-06'",
+        "type":  "pdf | link | notebook   (default: pdf)"
+      }
+    ],
+
+    "timeline": [
+      {
+        "date":  "string — e.g. 'Jan 2025'",
+        "event": "string — milestone description"
+      }
+    ],
+
+    "subRepos":   "string[] — related GitHub repo names grouped under this project",
+    "liveUrl":    "string   — fallback if links[] not set",
+    "docsUrl":    "string   — fallback if links[] not set",
+    "status":     "Active | Archived | WIP | Paused",
+    "featured":   "boolean  — bubble to top of the grid"
+  },
+
+  "_link_types": {
+    "live":     "Purple gradient — primary site link",
+    "preview":  "Green — opens iframe popup",
+    "docs":     "Blue — documentation",
+    "external": "Muted — any other link",
+    "github":   "Dark — added automatically, do not add manually"
+  },
+
+  "excludedRepos": [
+    "dsainvg.github.io",
+    "dsainvg.me",
+    "enigma_st_app",
+    "npuserver"
+  ],
+
+  "langColors": {
+    "Python":           "#3572a5",
+    "JavaScript":       "#f1e05a",
+    "TypeScript":       "#3178c6",
+    "C++":              "#f34b7d",
+    "Go":               "#00add8",
+    "HTML":             "#e34c26",
+    "CSS":              "#563d7c",
+    "Rust":             "#dea584",
+    "Java":             "#b07219",
+    "Shell":            "#89e051",
+    "Jupyter Notebook": "#da5b0b"
+  }
+}

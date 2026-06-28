@@ -1,0 +1,16 @@
+{
+  "repoName":  "circuit_diagram_generator",
+  "icon":      "🔌",
+  "shortDesc": "Converts text descriptions of electronic circuits into visual circuit schematics automatically.",
+  "fullDesc":  "A schematic rendering engine that takes natural language or structured text descriptions of electronic circuits and generates visual circuit diagrams.\n\nCore Idea:\nInstead of relying on predefined visual layouts, this project implements a rule-based parser that maps textual component declarations (resistors, capacitors, power sources) and connection nodes into a structured topological graph. It then executes layout routing algorithms to draw circuit symbols and route orthogonal wiring paths automatically, preventing overlapping lines and producing human-readable schematics.",
+  "tags":      ["Automation", "Circuits", "AI", "Python", "Graph Layout"],
+  "highlights": [
+    "Parses plain-text circuit descriptions into internal graph representations",
+    "Generates clean orthogonal connection routing between components",
+    "Draws standardised electronic component symbols dynamically",
+    "Reduces manual diagram drafting time for educational and engineering reports"
+  ],
+  "techStack": ["Python", "Matplotlib", "NetworkX", "Regex Parsing"],
+  "status":    "Active",
+  "featured":  false
+}

@@ -1,0 +1,12 @@
+{
+  "repoName":  "Loginpage",
+  "icon":      "🎨",
+  "shortDesc": "A stylish login page UI experiment — one of the earliest front-end projects.",
+  "fullDesc":  "An archived front-end design experiment featuring a modern animated login page. One of the earliest HTML/CSS/JavaScript projects — demonstrates early exploration of glassmorphism and smooth form transitions.",
+  "tags":      ["Web", "UI", "CSS", "JavaScript"],
+  "links": [
+    { "label": "Live Demo",  "url": "http://dev.dsainvg.me/Loginpage/",  "type": "live" }
+  ],
+  "status":    "Archived",
+  "featured":  false
+}

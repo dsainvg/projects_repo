@@ -1,0 +1,45 @@
+{
+  "repoName":   "auction_agents",
+  "displayName": "IPL MOCK AUCTION",
+  "icon":       "🏏",
+  "shortDesc":  "Multi-agent IPL 2026 mini auction simulation — 10 LLM-powered franchise agents bid on 370+ players using DeepSeek reasoning via a LangGraph pipeline.",
+
+  "fullDesc":   "A full simulation of the IPL 2026 mini auction where 10 LLM-powered franchise agents replace human decision-makers. Each agent operates with real individual purse constraints (2.75 Cr to 64.3 Cr) and competes for remaining squad slots across four player specialisations to assemble 25-player squads.\n\nBuilt on a LangGraph state machine with 5 nodes:\n• Data Loader — loads post-retention team rosters from official IPL CSV data\n• Host — controls simulation routing between nodes\n• Host Assistant — cycles through player sets, routes back to Host\n• Bidder Pool — 10 franchise agents bid in Greedy Sequential Order using Chain-of-Thought (CoT) reasoning over player valuation, squad constraints, rival budgets, and market dynamics\n• Trade Master — handles price progression; after 3 consecutive passes, finalises the trade and generates a 10-dimension reasoning summary to inform subsequent bids\n\nRun on AWS EC2 (~3 hours per full simulation) using deepseek-ai/deepseek-v3.1 via the NVIDIA API, with a Streamlit dashboard for visualisation.",
+
+  "highlights": [
+    "10 LLM franchise agents bid on 370+ real IPL 2026 mini auction players",
+    "68 of 77 real-world signings replicated — 36.4% player overlap with ground truth",
+    "Capped players retain 80.5% of real price; uncapped only 12.7% (data sparsity issue)",
+    "Chain-of-Thought reasoning over 5 decision axes: valuation, utility, squad fit, rivals, purse trajectory",
+    "Exposes LLM hallucination and long-context degradation in multi-round auction settings"
+  ],
+
+  "techStack":  [
+    "Python", "LangGraph", "DeepSeek v3.1", "NVIDIA API",
+    "Streamlit", "AWS EC2", "Chain-of-Thought Prompting"
+  ],
+
+  "tags":       ["AI", "Agents", "LLM", "Simulation", "Multi-Agent", "Python", "LangGraph"],
+
+  "links": [],
+
+  "reports": [
+    {
+      "title": "Mock IPL Auction — Simulation Report",
+      "file":  "auction_agents/reports/Mock_Ipl_Auction.pdf",
+      "desc":  "Full paper: methodology, LangGraph architecture, results vs IPL 2026 ground truth, and LLM failure analysis",
+      "date":  "2026",
+      "type":  "pdf"
+    }
+  ],
+
+  "timeline": [
+    { "date": "Late 2025",  "event": "IPL 2026 mini auction player list and retention data collected" },
+    { "date": "Early 2026", "event": "LangGraph pipeline with 5 nodes designed and implemented" },
+    { "date": "2026",       "event": "Full simulation run on AWS EC2 (~3 hrs) — 68 players bought" },
+    { "date": "2026",       "event": "Results compared to IPL 2026 ground truth — paper written" }
+  ],
+
+  "status":     "Active",
+  "featured":   false
+}

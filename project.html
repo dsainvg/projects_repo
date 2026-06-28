@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Project — Durga Sai</title>
+  <meta name="description" id="pageMeta" content="Project details by Durga Sai" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="stylesheet" href="assets/css/project-page.css" />
+</head>
+<body class="project-page">
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="https://dsainvg.me" class="nav-logo">
+        <span class="logo-ds">DS</span>
+        <span class="logo-sep">/</span>
+        <span class="logo-proj">projects</span>
+      </a>
+      <!-- Breadcrumb -->
+      <div class="pp-breadcrumb" id="ppBreadcrumb" aria-label="breadcrumb">
+        <a href="index.html" class="bc-link">All Projects</a>
+        <span class="bc-sep" aria-hidden="true">›</span>
+        <span class="bc-current" id="bcCurrent">Loading…</span>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All Projects
+        </a>
+        <a href="https://github.com/dsainvg" target="_blank" rel="noopener" class="btn-github">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ LOADING STATE ═══ -->
+  <div class="pp-loading" id="ppLoading">
+    <div class="pp-spinner" aria-hidden="true"></div>
+    <p>Loading project…</p>
+  </div>
+
+  <!-- ═══ ERROR STATE ═══ -->
+  <div class="pp-error hidden" id="ppError">
+    <div class="pp-error-icon" aria-hidden="true">⚠️</div>
+    <h2>Project not found</h2>
+    <p id="ppErrorMsg">Could not load this project's data.</p>
+    <a href="index.html" class="pp-btn pp-btn-ghost">← Back to All Projects</a>
+  </div>
+
+  <!-- ═══ PROJECT CONTENT ═══ -->
+  <div class="pp-content hidden" id="ppContent">
+
+    <!-- Hero -->
+    <header class="pp-hero" id="ppHero">
+      <div class="pp-hero-inner">
+        <div class="pp-hero-left">
+          <div class="pp-icon" id="ppIcon"></div>
+          <div>
+            <div class="pp-badges" id="ppBadges"></div>
+            <h1 class="pp-title" id="ppTitle"></h1>
+            <p class="pp-short" id="ppShort"></p>
+          </div>
+        </div>
+        <div class="pp-hero-links" id="ppHeroLinks"></div>
+      </div>
+      <div class="pp-tags" id="ppTags"></div>
+    </header>
+
+    <!-- ── STATS BAR ── -->
+    <div class="pp-stats-bar" id="ppStatsBar"></div>
+
+    <!-- ── BODY: 2-col layout ── -->
+    <div class="pp-body">
+
+      <!-- LEFT: Main content -->
+      <div class="pp-main">
+
+        <!-- Overview -->
+        <section class="pp-section" id="sec-overview">
+          <div class="pp-sec-label">Overview</div>
+          <div class="pp-desc" id="ppDesc"></div>
+        </section>
+
+        <!-- Highlights -->
+        <section class="pp-section" id="sec-highlights" style="display:none">
+          <div class="pp-sec-label">Key Highlights</div>
+          <ul class="pp-highlights" id="ppHighlights"></ul>
+        </section>
+
+        <!-- Reports & Papers -->
+        <section class="pp-section" id="sec-reports" style="display:none">
+          <div class="pp-sec-label">Reports &amp; Papers</div>
+          <div class="pp-reports-grid" id="ppReportsGrid"></div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="pp-section" id="sec-timeline" style="display:none">
+          <div class="pp-sec-label">Timeline</div>
+          <ol class="pp-timeline" id="ppTimeline"></ol>
+        </section>
+
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="pp-sidebar">
+
+        <!-- Tech Stack -->
+        <div class="pp-sidebar-card" id="sec-tech" style="display:none">
+          <div class="pp-sec-label">Tech Stack</div>
+          <div class="pp-tech-grid" id="ppTechGrid"></div>
+        </div>
+
+        <!-- Includes (sub-repos) -->
+        <div class="pp-sidebar-card" id="sec-subrepos" style="display:none">
+          <div class="pp-sec-label">Includes</div>
+          <div class="pp-sub-repos" id="ppSubRepos"></div>
+        </div>
+
+        <!-- All Links -->
+        <div class="pp-sidebar-card">
+          <div class="pp-sec-label">Links</div>
+          <div class="pp-all-links" id="ppAllLinks"></div>
+        </div>
+
+        <!-- Repo Stats -->
+        <div class="pp-sidebar-card">
+          <div class="pp-sec-label">Repository</div>
+          <div class="pp-repo-stats" id="ppRepoStats"></div>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- ═══ PDF VIEWER MODAL ═══ -->
+  <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true" aria-label="Document viewer" aria-hidden="true">
+    <div class="pdf-backdrop" id="pdfBackdrop"></div>
+    <div class="pdf-window">
+      <div class="pdf-chrome">
+        <div class="pdf-chrome-title" id="pdfTitle">Document</div>
+        <div class="pdf-chrome-actions">
+          <a class="pdf-btn" id="pdfDownload" download title="Download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+          <a class="pdf-btn" id="pdfNewTab" target="_blank" rel="noopener" title="Open in new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            New Tab
+          </a>
+          <button class="pdf-btn pdf-btn-close" id="pdfClose" title="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Close
+          </button>
+        </div>
+      </div>
+      <div class="pdf-stage">
+        <iframe id="pdfFrame" src="about:blank" title="PDF Viewer"
+          allowfullscreen
+          style="width:100%;height:100%;border:none;background:#f5f5f5;"></iframe>
+        <div id="markdownContent" class="markdown-body"
+          style="display:none; width:100%; height:100%; padding:40px; overflow-y:auto; background:#0f0f1a; color:var(--text-2); line-height:1.75; font-size:15px; box-sizing:border-box;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span>Built by <a href="https://dsainvg.me" class="flink">Durga Sai</a></span>
+      <span class="fdot" aria-hidden="true">·</span>
+      <span>© 2025 Durga Sai. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/project-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+/* ═══════════════════════════════════════════════════
+   panel.css  —  Project detail modal popup
+   (replaces old side-panel styles)
+   ═══════════════════════════════════════════════════ */
+
+/* ── Modal wrapper ── */
+.detail-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  pointer-events: none;
+  visibility: hidden;
+}
+.detail-modal.open {
+  pointer-events: all;
+  visibility: visible;
+}
+
+/* ── Backdrop ── */
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 14, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.28s var(--ease);
+  cursor: pointer;
+}
+.detail-modal.open .detail-backdrop { opacity: 1; }
+
+/* ── Modal window ── */
+.detail-window {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: #12121e;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.08),
+    0 40px 100px rgba(0, 0, 0, 0.65),
+    0 0 60px rgba(139, 92, 246, 0.07);
+  transform: scale(0.93) translateY(20px);
+  opacity: 0;
+  transition:
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease);
+}
+.detail-modal.open .detail-window {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* ── Header ── */
+.dw-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+
+.dw-header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.dw-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.dw-header-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dw-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dw-title {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dw-close {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: all 0.18s;
+  margin-top: 2px;
+}
+.dw-close:hover {
+  background: rgba(248,113,113,0.1);
+  border-color: rgba(248,113,113,0.28);
+  color: var(--red);
+}
+
+.dw-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dw-tag {
+  padding: 4px 11px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  color: var(--accent-1);
+  font-weight: 500;
+}
+
+/* ── Scrollable body ── */
+.dw-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139,92,246,0.2) transparent;
+}
+
+/* ── Sections ── */
+.dw-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dw-section.hidden { display: none; }
+
+.dw-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-3);
+}
+
+/* ── Description ── */
+.dw-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+.dw-desc p { margin-bottom: 10px; }
+.dw-desc p:last-child { margin-bottom: 0; }
+.dw-desc ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dw-desc li { list-style: disc; color: var(--text-2); }
+.dw-desc li::marker { color: var(--accent-1); }
+
+/* ── Links grid ── */
+.dw-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dw-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s var(--ease);
+}
+
+/* Link type variants */
+.dw-link-github {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--text-2);
+}
+.dw-link-github:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+
+.dw-link-live {
+  background: var(--gradient);
+  color: #fff;
+}
+.dw-link-live:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 4px 18px rgba(139,92,246,0.35); }
+
+.dw-link-preview {
+  background: rgba(52,211,153,0.08);
+  border-color: rgba(52,211,153,0.22);
+  color: var(--green);
+}
+.dw-link-preview:hover { background: rgba(52,211,153,0.16); }
+
+.dw-link-docs {
+  background: rgba(96,165,250,0.08);
+  border-color: rgba(96,165,250,0.22);
+  color: var(--blue);
+}
+.dw-link-docs:hover { background: rgba(96,165,250,0.16); }
+
+.dw-link-external {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+  color: var(--text-3);
+}
+.dw-link-external:hover { color: var(--text-2); background: rgba(255,255,255,0.08); }
+
+/* Full details page — spans full width at top */
+.dw-link-fullpage {
+  background: rgba(139,92,246,0.06);
+  border-color: rgba(139,92,246,0.22);
+  color: var(--accent-1);
+  width: 100%;
+  justify-content: center;
+  font-weight: 700;
+}
+.dw-link-fullpage:hover {
+  background: rgba(139,92,246,0.14);
+  border-color: rgba(139,92,246,0.4);
+  transform: translateY(-1px);
+}
+
+/* ── Sub-repos ── */
+.dw-sub-repos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dw-subrepo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: var(--r-sm);
+  font-size: 12.5px;
+  font-family: var(--mono);
+  color: var(--text-3);
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.dw-subrepo:hover { color: var(--text-2); border-color: rgba(139,92,246,0.35); }
+
+/* ── Stats row ── */
+.dw-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.dw-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-3);
+}

@@ -1,0 +1,25 @@
+{
+  "repoName":  "Electric-Charge-Distribution",
+  "icon":      "⚛️",
+  "shortDesc": "Interactive browser simulation of electric charge distribution and field line visualisation.",
+  "fullDesc":  "An interactive 2D physics engine built to simulate and visual electrostatic field layouts.\n\nCore Idea:\nUsers place positive and negative point charges on a canvas, and the simulation computes the net electrostatic potential at every pixel using Coulomb's law. Rather than showing static images, it traces field lines in real-time starting near the boundaries of positive charges and stepping through space using numerical integration (Euler's method) until they reach a negative charge or exit the viewport. It also renders a dynamic scalar gradient field showing spatial voltage distribution.",
+  "tags":      ["Physics", "Simulation", "HTML", "Education", "JavaScript", "Canvas"],
+  "highlights": [
+    "Real-time 2D electrostatic potential rendering using HTML Canvas",
+    "Dynamic field line tracing via numerical integration (Euler's method)",
+    "Interactive controls for charge value adjustment and location manipulation",
+    "Vector field representation with vector arrows or density mapping"
+  ],
+  "reports": [
+    {
+      "title": "Hiring Report & Case Study",
+      "file":  "Electric-Charge-Distribution/reports/ElectricChargeDistribution_HiringReport.md",
+      "desc":  "Technical case study on modular architecture design, clean code practices, physics calculation engine, and user experience.",
+      "date":  "2026-06",
+      "type":  "markdown"
+    }
+  ],
+  "techStack": ["HTML5", "Vanilla CSS", "JavaScript", "HTML Canvas API"],
+  "status":    "Active",
+  "featured":  false
+}

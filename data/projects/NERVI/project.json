@@ -1,0 +1,46 @@
+{
+  "repoName":   "NERVI",
+  "icon":       "⚡",
+  "shortDesc":  "Run local LLMs blazing fast on Intel NPU — fully offline, CLI-first, with an extension marketplace.",
+  "fullDesc":   "A Go CLI tool that runs Large Language Models directly on Intel AI Boost NPU via OpenVINO GenAI. No GPU required, no cloud, no latency.\n\nNERVI is designed from first principles for Intel hardware — rather than layering on top of existing inference runtimes, it compiles models into native NPU blobs using OpenVINO, manages NPU memory explicitly, and exposes a clean CLI + interactive TUI.\n\nThe extension system lets users distribute custom tool integrations via the nervi.dsainvg.me/marketplace — similar to VS Code extensions but for LLM interactions.\n\nShips with npuserver — a Python/Flask backend that exposes an OpenAI-compatible /v1/chat/completions endpoint, enabling any OpenAI SDK client to use the local NPU model with zero code changes.",
+
+  "highlights": [
+    "Runs Qwen3.5 4B at ~40 tok/s on Intel AI Boost NPU (no GPU, no cloud)",
+    "Single Go binary — no runtime, no Python required for the CLI itself",
+    "OpenAI-compatible API via npuserver — drop-in for any OpenAI SDK client",
+    "Extension marketplace for custom tool integrations",
+    "Fully offline — no telemetry, no data leaves the machine"
+  ],
+
+  "techStack":  ["Go", "Python", "OpenVINO GenAI", "Flask", "INT4 Quantisation", "TUI (Bubble Tea)"],
+
+  "tags":       ["AI", "LLM", "Go", "CLI", "NPU", "OpenVINO"],
+
+  "links": [
+    { "label": "Open Site",             "url": "https://nervi.dsainvg.me",                 "type": "live"     },
+    { "label": "Documentation",         "url": "https://nervi.dsainvg.me/docs",            "type": "docs"     },
+    { "label": "Extension Marketplace", "url": "https://nervi.dsainvg.me/marketplace",     "type": "external" }
+  ],
+
+  "reports": [
+    {
+      "title": "NERVI Project Report",
+      "file":  "NERVI/reports/NERVI_Project_Report.md",
+      "desc":  "Comprehensive report: architectural breakdown, npuserver implementation, fine-tuning pipeline, extension runtime IPC, and deployment mechanics.",
+      "date":  "2026-06",
+      "type":  "markdown"
+    }
+  ],
+
+  "timeline": [
+    { "date": "Jan 2025",  "event": "Project started — initial NPU inference tests" },
+    { "date": "Feb 2025",  "event": "First model (Phi-2) running natively on Intel NPU" },
+    { "date": "Mar 2025",  "event": "npuserver — OpenAI-compatible API shipped" },
+    { "date": "Apr 2025",  "event": "CLI TUI + interactive chat mode released" },
+    { "date": "Jun 2025",  "event": "Extension marketplace launched at nervi.dsainvg.me/marketplace" }
+  ],
+
+  "subRepos":   ["npuserver"],
+  "status":     "Active",
+  "featured":   true
+}

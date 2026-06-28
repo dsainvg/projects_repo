@@ -1,0 +1,56 @@
+/* ══════════════════════════════════════
+   responsive.css  —  All @media queries
+   ══════════════════════════════════════ */
+
+/* ── 3 columns → 2 on tablets ── */
+@media (max-width: 1100px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── 2 columns → 1 on small screens ── */
+@media (max-width: 700px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .projects-area { padding: 20px 16px 48px; }
+}
+
+
+/* ── Small screens (<768px) ── */
+@media (max-width: 768px) {
+  .hero { padding-top: calc(var(--nav-h) + 52px); }
+  .hero-title { font-size: clamp(32px, 8vw, 46px); }
+  .hero-sub   { font-size: 14.5px; }
+
+  .hero-stats { gap: 8px; }
+  .stat-pill  { padding: 13px 20px; min-width: 80px; }
+  .stat-n     { font-size: 24px; }
+
+  .projects-grid { grid-template-columns: 1fr; }
+
+  .nav-search { display: none; }
+  .btn-back   { display: none; }
+}
+
+/* ── Extra small (<480px) ── */
+@media (max-width: 480px) {
+  .nav-inner  { padding: 0 16px; gap: 10px; }
+  .controls-inner { padding: 0 16px; }
+
+  .hero-stats { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .stat-pill  { flex: 1; min-width: 70px; }
+
+  .logo-proj  { display: none; }
+  .logo-sep   { display: none; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .pulse-dot { animation: none; }
+}

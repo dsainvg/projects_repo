@@ -1,0 +1,122 @@
+/* ══════════════════════════════════════════════════════
+   base.css  —  CSS custom properties, reset, typography
+   ══════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ── */
+:root {
+  /* Background layers */
+  --bg:          #0a0a0f;
+  --bg-2:        #0f0f1a;
+  --bg-card:     #111120;
+  --bg-card-hov: #191930;
+
+  /* Borders */
+  --border:      rgba(139, 92, 246, 0.13);
+  --border-hov:  rgba(139, 92, 246, 0.45);
+  --border-sub:  rgba(255, 255, 255, 0.06);
+
+  /* Accent — purple → indigo → blue (matching dsainvg.me) */
+  --accent-1:    #8b5cf6;
+  --accent-2:    #6366f1;
+  --accent-3:    #3b82f6;
+  --gradient:    linear-gradient(135deg, var(--accent-1) 0%, var(--accent-3) 100%);
+
+  /* Text */
+  --text:        #f1f0ff;
+  --text-2:      #a89ec9;
+  --text-3:      #5e587d;
+
+  /* Semantic colors */
+  --green:       #34d399;
+  --yellow:      #fbbf24;
+  --red:         #f87171;
+  --blue:        #60a5fa;
+
+  /* Layout */
+  --nav-h:       64px;
+  --page-max:    1400px;
+
+  /* Radii */
+  --r:           14px;
+  --r-sm:        8px;
+  --r-xs:        6px;
+  --r-pill:      100px;
+
+  /* Typography */
+  --font:  'Inter', system-ui, -apple-system, sans-serif;
+  --mono:  'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Transitions */
+  --ease:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, svg {
+  display: block;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar          { width: 6px; height: 6px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: rgba(139,92,246,0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.45); }
+
+/* ── Utility ── */
+.hidden { display: none !important; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Gradient text helper ── */
+.grad {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

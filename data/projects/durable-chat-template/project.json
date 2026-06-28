@@ -1,0 +1,19 @@
+{
+  "repoName":  "durable-chat-template",
+  "icon":      "💬",
+  "shortDesc": "Durable real-time chat built with TypeScript and Cloudflare Durable Objects.",
+  "fullDesc":  "A template for highly scalable, real-time web applications deployed directly on Cloudflare's edge network.\n\nCore Idea:\nInstead of routing websocket connections to a centralised database or application server, this template utilizes Cloudflare Durable Objects to store session and message state directly inside active coordinate workers. This guarantees strong consistency and microsecond-level latency by co-locating room coordination logic and connection handling within the same active compute instance near users.",
+  "tags":      ["TypeScript", "Web", "Real-time", "Cloudflare", "Edge", "WebSockets"],
+  "links": [
+    { "label": "Open Site",  "url": "https://todo.dsainvg.me",  "type": "live" }
+  ],
+  "highlights": [
+    "State persistence via Cloudflare Durable Objects",
+    "Real-time low-latency coordination using WebSockets",
+    "Completely serverless edge deployment with zero database configuration",
+    "Modern, responsive responsive UI styled with custom CSS variables"
+  ],
+  "techStack": ["TypeScript", "Cloudflare Workers", "Durable Objects", "WebSockets", "HTML/CSS"],
+  "status":    "Active",
+  "featured":  false
+}

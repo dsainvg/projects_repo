@@ -1,0 +1,31 @@
+{
+  "repoName":  "enigma",
+  "icon":      "🔐",
+  "shortDesc": "Modern C++ cryptography library with a Python extension — password hashing, file encryption, byte-level ciphers.",
+  "fullDesc":  "A cryptography library built in modern C++ and exposed as a Python extension via pybind11. It implements custom cryptographic ciphers and memory-hard hashing algorithms from scratch, without external dependencies like OpenSSL.\n\nCore Idea:\nThe project focuses on custom security algorithms for learning and experimentation:\n• SecureHash — a memory-hard password hashing function designed to resist GPU-based parallel brute-force attacks.\n• FileCipher — a symmetric block-level encryption algorithm applying dynamic bit-rotation and XOR chaining on byte streams.\n• ByteCrypt — high-speed, in-memory byte-stream encryption exposed to Python via pybind11 bindings.\n\nIt features a full documentation site and an interactive Streamlit application to demonstrate the encryption live.",
+  "tags":      ["Cryptography", "C++", "Python", "Security", "pybind11"],
+  "links": [
+    { "label": "PyPI Package", "url": "https://pypi.org/project/enigma-encryption/", "type": "external" },
+    { "label": "Open Live",    "url": "https://enigma-ed.streamlit.app/?embed=true",  "type": "live" },
+    { "label": "Open Docs",    "url": "https://dev.dsainvg.me/enigma/",         "type": "docs" }
+  ],
+  "reports": [
+    {
+      "title": "Enigma Project Report",
+      "file":  "enigma/reports/enigma_project_report.md",
+      "desc":  "Iterative engineering log (4 generations), technical capabilities, benchmarks, and security design boundaries.",
+      "date":  "2026-06",
+      "type":  "markdown"
+    }
+  ],
+  "highlights": [
+    "Custom memory-hard password hashing algorithm (SecureHash)",
+    "Symmetric block cipher utilizing bit-rotation and XOR chaining (FileCipher)",
+    "Modern C++ core with fast Python bindings compiled using pybind11",
+    "Comprehensive documentation built with MkDocs"
+  ],
+  "techStack": ["C++", "Python", "pybind11", "MkDocs", "Streamlit"],
+  "subRepos":  ["enigma_st_app"],
+  "status":    "Active",
+  "featured":  true
+}

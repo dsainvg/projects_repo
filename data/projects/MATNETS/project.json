@@ -1,0 +1,29 @@
+{
+  "repoName":  "MATNETS",
+  "icon":      "🧠",
+  "shortDesc": "Matrix-neuron neural network research library — custom deep learning experiments built from scratch in JAX.",
+  "fullDesc":  "MATNETS is a pure JAX research experiment that proposes a departure from conventional scalar neuron models. Instead of a scalar activation, MATNETS endows every neuron with an n × n matrix.\n\nCore Idea:\nIn conventional networks, forward propagation involves element-wise operations. MATNETS uses a tensor contraction formulation (via jax.numpy.einsum) to perform true matrix multiplication along inner indices for every neuron connection. This changes weight contractions into matrix-product operators and activation functions into structural transformations.\n\nThe library is built directly on JAX primitives to support out-of-the-box JIT compilation, vectorisation (vmap), auto-differentiation (grad), and custom training loops.",
+  "tags":      ["AI", "ML", "Neural Networks", "Research", "Python", "JAX"],
+  "links": [
+    { "label": "PyPI Package", "url": "https://pypi.org/project/matnets/", "type": "external" },
+    { "label": "Open Docs",    "url": "https://dev.dsainvg.me/MATNETS/",   "type": "live" }
+  ],
+  "reports": [
+    {
+      "title": "MATNETS Research Report",
+      "file":  "MATNETS/reports/MATNETS_Report.md",
+      "desc":  "Algebraically-rich deep learning in JAX: core matrix-neuron formulation, neural layers, and MNIST parameter efficiency.",
+      "date":  "2026-06",
+      "type":  "markdown"
+    }
+  ],
+  "highlights": [
+    "Replaces scalar neurons with matrix-valued neurons (n × n activations)",
+    "Propagates computations via full matrix multiplication instead of element-wise operations",
+    "Written natively in JAX supporting jit, vmap, and grad",
+    "Maintains competitive accuracy (~98.5% MNIST) at a fraction of standard parameters"
+  ],
+  "techStack": ["Python", "JAX", "NumPy", "Flax", "Deep Learning"],
+  "status":    "Active",
+  "featured":  true
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Durga Sai</title>
+  <meta name="description" content="All projects by Durga Sai (DSAINVG) — browse GitHub repos, live demos, and source code in one place." />
+  <meta property="og:title" content="Projects — Durga Sai" />
+  <meta property="og:description" content="Project portfolio of Durga Sai — IIT Kharagpur CS student building AI, cryptography, and web tools." />
+  <meta property="og:url" content="https://proj.dsainvg.me" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="https://dsainvg.me" class="nav-logo" title="Back to Portfolio">
+        <span class="logo-ds">DS</span>
+        <span class="logo-sep">/</span>
+        <span class="logo-proj">projects</span>
+      </a>
+      <div class="nav-search" role="search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="searchInput" class="search-input" placeholder="Search projects…" autocomplete="off" aria-label="Search projects" />
+      </div>
+      <div class="nav-actions">
+        <a href="https://dsainvg.me" class="btn-back" id="btn-portfolio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Portfolio
+        </a>
+        <a href="https://github.com/dsainvg" target="_blank" rel="noopener noreferrer" class="btn-github" id="btn-github">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero" aria-label="Hero section">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badge" role="status">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        Live · Auto-synced from GitHub
+      </div>
+      <h1 class="hero-title">All <span class="grad">Projects</span></h1>
+      <p class="hero-sub">A living catalogue of everything I've built — AI inference engines, cryptography libraries, neural networks, and more.</p>
+      <div class="hero-stats" id="heroStats" aria-label="Repository statistics">
+        <div class="stat-pill"><span class="stat-n" id="statTotal">—</span><span class="stat-l">Repos</span></div>
+        <div class="stat-pill"><span class="stat-n" id="statLive">—</span><span class="stat-l">Live Demos</span></div>
+        <div class="stat-pill"><span class="stat-n" id="statLangs">—</span><span class="stat-l">Languages</span></div>
+        <div class="stat-pill"><span class="stat-n" id="statStars">—</span><span class="stat-l">Total Stars</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTROLS BAR ═══ -->
+  <div class="controls-bar" id="controlsBar" role="toolbar" aria-label="Filter and sort controls">
+    <div class="controls-inner">
+      <div class="tag-filters" id="tagFilters" role="group" aria-label="Filter by tag"></div>
+      <div class="controls-right">
+        <label for="sortSel" class="sr-only">Sort projects</label>
+        <select class="sort-sel" id="sortSel" aria-label="Sort projects">
+          <option value="updated">Latest Updated</option>
+          <option value="created">Newest Created</option>
+          <option value="name">Name A–Z</option>
+          <option value="stars">Stars</option>
+        </select>
+        <div class="view-btns" role="group" aria-label="View mode">
+          <button class="view-btn active" id="btnGrid" title="Grid view" aria-pressed="true" aria-label="Grid view">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          </button>
+          <button class="view-btn" id="btnList" title="List view" aria-pressed="false" aria-label="List view">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="14" height="2" rx="1"/><rect x="1" y="7" width="14" height="2" rx="1"/><rect x="1" y="12" width="14" height="2" rx="1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PROJECTS GRID (full width, 3 cols) ═══ -->
+  <main class="projects-area" id="projectsArea" aria-label="Projects list">
+    <div class="projects-grid" id="projectsGrid" role="list">
+      <div class="skel" role="presentation"></div>
+      <div class="skel" role="presentation"></div>
+      <div class="skel" role="presentation"></div>
+      <div class="skel" role="presentation"></div>
+      <div class="skel" role="presentation"></div>
+      <div class="skel" role="presentation"></div>
+    </div>
+    <div class="empty-state hidden" id="emptyState" role="status">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="52" height="52" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <p>No projects match your search</p>
+      <button onclick="window.__app.resetSearch()" class="btn-outline-sm" id="btn-clear-search">Clear search</button>
+    </div>
+  </main>
+
+  <!-- ═══ PROJECT DETAIL MODAL ═══ -->
+  <div class="detail-modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true">
+    <div class="detail-backdrop" id="detailBackdrop"></div>
+    <div class="detail-window">
+      <!-- Header -->
+      <div class="dw-header">
+        <div class="dw-header-top">
+          <div class="dw-icon" id="dwIcon" aria-hidden="true"></div>
+          <div class="dw-header-meta">
+            <div class="dw-badges" id="dwBadges"></div>
+            <h2 class="dw-title" id="dwTitle"></h2>
+          </div>
+          <button class="dw-close" id="detailClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="dw-tags" id="dwTags"></div>
+      </div>
+
+      <!-- Body: scrollable -->
+      <div class="dw-body">
+        <!-- Description -->
+        <div class="dw-section">
+          <p class="dw-desc" id="dwDesc"></p>
+        </div>
+
+        <!-- Links / Actions -->
+        <div class="dw-section">
+          <div class="dw-section-label">Links</div>
+          <div class="dw-links" id="dwLinks"></div>
+        </div>
+
+        <!-- Includes (sub-repos) -->
+        <div class="dw-section dw-sub-section hidden" id="dwSubSection">
+          <div class="dw-section-label">Includes</div>
+          <div class="dw-sub-repos" id="dwSubRepos"></div>
+        </div>
+
+        <!-- Stats -->
+        <div class="dw-stats" id="dwStats"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PREVIEW MODAL (iframe popup) ═══ -->
+  <div class="preview-modal" id="previewModal" role="dialog" aria-modal="true" aria-label="Live preview" aria-hidden="true">
+    <div class="preview-backdrop" id="previewBackdrop"></div>
+    <div class="preview-window">
+      <div class="preview-chrome" role="toolbar" aria-label="Browser toolbar">
+        <div class="chrome-dots" aria-hidden="true">
+          <span class="cdot cdot-r"></span>
+          <span class="cdot cdot-y"></span>
+          <span class="cdot cdot-g"></span>
+        </div>
+        <div class="chrome-bar" id="chromeBar" aria-label="Current URL">about:blank</div>
+        <div class="chrome-btns">
+          <button class="chrome-btn" id="iframeReload" title="Reload" aria-label="Reload">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+          <button class="chrome-btn" id="iframeNewTab" title="Open in new tab" aria-label="Open in new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </button>
+          <button class="chrome-btn chrome-btn-close" id="previewClose" title="Close" aria-label="Close preview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="preview-stage">
+        <iframe id="liveFrame" src="about:blank" title="Live Demo Preview"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <span>Built by <a href="https://dsainvg.me" class="flink">Durga Sai</a></span>
+      <span class="fdot" aria-hidden="true">·</span>
+      <span>Data via <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener" class="flink">GitHub API</a></span>
+      <span class="fdot" aria-hidden="true">·</span>
+      <span>© 2025 Durga Sai. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
