@@ -59,7 +59,12 @@
     "enigma_st_app",
     "npuserver",
     "encryptionAlgorithm",
-    "data_qwen3.5_4B_finetune"
+    "data_qwen3.5_4B_finetune",
+    "nervi-finetunes-and-convertors",
+    "openvino-model-conv",
+    "orch-lib",
+    "orch-vscode-extension",
+    "documentation-aeon"
   ],
 
   "langColors": {
@@ -78,7 +83,12 @@
   "redirects": {
     "npuserver": "NERVI",
     "data_qwen3.5_4B_finetune": "NERVI",
+    "nervi-finetunes-and-convertors": "NERVI",
+    "openvino-model-conv": "NERVI",
     "enigma_st_app": "enigma",
-    "encryptionAlgorithm": "enigma"
+    "encryptionAlgorithm": "enigma",
+    "orch-lib": "software_eng_lab_project",
+    "orch-vscode-extension": "software_eng_lab_project",
+    "documentation-aeon": "software_eng_lab_project"
   }
 }

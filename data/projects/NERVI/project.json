@@ -40,7 +40,7 @@
     { "date": "Jun 2025",  "event": "Extension marketplace launched at nervi.dsainvg.me/marketplace" }
   ],
 
-  "subRepos":   ["npuserver", "data_qwen3.5_4B_finetune"],
+  "subRepos":   ["npuserver", "data_qwen3.5_4B_finetune", "nervi-finetunes-and-convertors", "openvino-model-conv"],
   "status":     "Active",
   "featured":   true
 }

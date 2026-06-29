@@ -1,0 +1,32 @@
+{
+  "repoName":   "software_eng_lab_project",
+  "displayName": "ORCH",
+  "icon":       "🎼",
+  "shortDesc":  "Agent Graph Orchestration Language — a custom DSL, compiler, runtime, and IDE extension for multi-agent systems.",
+  "fullDesc":   "A custom programming language designed from scratch for building and orchestrating systems made up of multiple intelligent agents.\n\nRather than gluing existing frameworks together, this project involved designing the language itself — its grammar, its rules, how programs written in it get compiled, and how they ultimately run.\n\nIncludes a compiler written in OCaml, a Python runtime execution engine, a published PyPI package (orch-lib), and a TypeScript-based VS Code extension published to the VS Code Marketplace and Open VSX Registry.",
+  "tags":       ["OCaml", "Python", "TypeScript", "Compiler", "DSL", "Multi-Agent"],
+  "techStack":  ["OCaml", "Python", "TypeScript", "VS Code API", "CI/CD (GitHub Actions)", "OCamlYacc/Lex"],
+  "highlights": [
+    "Compiler written in OCaml with Lexer, Parser, Semantic Analysis, and Code Generation",
+    "Python-based runtime execution engine (orch-lib) distributed on PyPI",
+    "TypeScript VS Code Extension live on the Marketplace and Open VSX with full syntax highlighting, hover documentation, and auto-completion",
+    "Full public user documentation site deployed and versioned"
+  ],
+  "links": [
+    { "label": "VS Code Marketplace", "url": "https://marketplace.visualstudio.com/items?itemName=dsainvg.orch-dsl-language-support", "type": "external" },
+    { "label": "PyPI Package", "url": "https://pypi.org/project/orch-lib/", "type": "external" },
+    { "label": "Live Documentation", "url": "https://dsainvg.github.io/documentation-aeon/", "type": "docs" }
+  ],
+  "reports": [
+    {
+      "title": "ORCH Project Report",
+      "file":  "software_eng_lab_project/reports/ORCH_Project_Report.md",
+      "desc":  "Comprehensive engineering log: architecture, compiler stages, runtime design, and VS Code extension integrations.",
+      "date":  "2026-06",
+      "type":  "markdown"
+    }
+  ],
+  "subRepos":   ["orch-lib", "orch-vscode-extension", "documentation-aeon"],
+  "status":     "Active",
+  "featured":   true
+}
