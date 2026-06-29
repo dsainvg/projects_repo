@@ -89,6 +89,7 @@ function mergeData(name, cfg, gh, settings) {
     reports:    cfg.reports     ?? [],
     timeline:   cfg.timeline    ?? [],
     subRepos:   cfg.subRepos    ?? [],
+    subRepoOverviews: cfg.subRepoOverviews ?? {},
     githubUrl:  gh.html_url     ?? cfg.githubUrl ?? defaultGithubUrl,
     language:   gh.language     ?? null,
     langColor:  langColors[gh.language] ?? '#8b5cf6',

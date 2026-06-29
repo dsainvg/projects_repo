@@ -103,6 +103,7 @@ function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
         links:      cfg.links       ?? null,   // optional: array of {label, url, type}
         githubUrl:  repo.html_url,
         subRepos:   cfg.subRepos    ?? [],
+        subRepoOverviews: cfg.subRepoOverviews ?? {},
         stars:      repo.stargazers_count,
         forks:      repo.forks_count,
         archived:   repo.archived,
@@ -136,6 +137,7 @@ function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
         links:      cfg.links       ?? null,
         githubUrl:  cfg.githubUrl   ?? null,
         subRepos:   cfg.subRepos    ?? [],
+        subRepoOverviews: cfg.subRepoOverviews ?? {},
         stars:      0,
         forks:      0,
         archived:   false,
