@@ -80,28 +80,20 @@
     "Teams-page-spats",
     "WeatherReport",
     "projects_repo",
-    "API_forjosaa",
     "Appflowy_Extension__Application",
-    "Circuit-Maker",
-    "cp-share",
-    "CSES-EXTENSION",
     "datasets",
     "demo_events",
     "encryption-cli",
     "encryptionAlgorithmApplication",
     "FAIML",
     "FLOW",
-    "hosted-tictactoe",
-    "mailautomation",
     "matlab_sih",
-    "scrap",
     "SUDOKU",
     "syslab",
     "Tic-tac-toe-model",
     "TinyRecursiveModels",
     "TMRM",
-    "VCF",
-    "VSCODEEXT"
+    "sync-app-cli"
   ],
 
   "langColors": {
@@ -124,11 +116,16 @@
     "openvino-model-conv": "NERVI",
     "enigma_st_app": "enigma",
     "encryptionAlgorithm": "enigma",
+    "encryption-cli": "enigma",
+    "encryptionAlgorithmApplication": "enigma",
     "orch-lib": "software_eng_lab_project",
     "orch-vscode-extension": "software_eng_lab_project",
     "documentation-aeon": "software_eng_lab_project",
     "mat_nets": "MATNETS",
     "capsule_nets": "MATNETS",
+    "TMRM": "MATNETS",
+    "Tic-tac-toe-model": "hosted-tictactoe",
+    "sync-app-cli": "durable-chat-template",
     "Loginpage": "index.html"
   }
 }

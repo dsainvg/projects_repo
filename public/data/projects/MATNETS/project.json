@@ -24,7 +24,7 @@
     "Maintains competitive accuracy (~98.5% MNIST) at a fraction of standard parameters"
   ],
   "techStack": ["Python", "JAX", "NumPy", "Flax", "Deep Learning"],
-  "subRepos":  ["mat_nets", "capsule_nets"],
+  "subRepos":  ["mat_nets", "capsule_nets", "TMRM"],
   "status":    "Active",
   "featured":  true
 }

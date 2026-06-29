@@ -1,0 +1,17 @@
+{
+  "repoName":  "Circuit-Maker",
+  "displayName": "Circuit Maker",
+  "icon":      "🤖",
+  "shortDesc": "Intelligent logic gate optimizer finding minimal layouts for boolean transformations.",
+  "fullDesc":  "An intelligent system designed to calculate and map the minimum number of logic gates required to perform any arbitrary boolean transformation.\n\nCore Idea:\nThe optimizer utilizes state-space search and graph pruning algorithms to search the topological combinations of basic gates (AND, OR, NOT, XOR, NAND). It minimizes gate counts and propagation delays, serving as a helper tool for digital design validation and circuit optimization.",
+  "tags":      ["C++", "Algorithms", "Digital Logic", "Optimization"],
+  "highlights": [
+    "Finds the absolute minimal logic gate combinations for custom truth tables",
+    "Uses graph pruning and branch-and-bound logic to search space efficiently",
+    "Supports multiple standard gate libraries"
+  ],
+  "techStack": ["C++", "Data Structures", "Logic Optimization"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

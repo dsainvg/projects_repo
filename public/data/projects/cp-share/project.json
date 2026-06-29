@@ -1,0 +1,17 @@
+{
+  "repoName":  "cp-share",
+  "displayName": "CP Share",
+  "icon":      "📤",
+  "shortDesc": "Code snippet sharing platform tailored for competitive programmers.",
+  "fullDesc":  "A utility platform designed for competitive programmers to share solutions, codes, and logic snippets instantly.\n\nCore Idea:\nCP Share solves the friction of sharing competitive programming solutions by allowing users to capture their editor active buffer, format it automatically, and generate lightweight sharing links. It supports code syntax highlighting and editor integrations.",
+  "tags":      ["JavaScript", "Web", "Utility", "CP"],
+  "highlights": [
+    "One-click sharing for competitive programming codebases",
+    "Preserves indentation, language detection, and styling",
+    "Generates clean, shareable URLs instantly"
+  ],
+  "techStack": ["JavaScript", "HTML/CSS", "Snippet Management"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

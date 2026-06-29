@@ -1,0 +1,21 @@
+{
+  "repoName":  "API_forjosaa",
+  "displayName": "JoSAA Counselling Helper",
+  "icon":      "🎓",
+  "shortDesc": "Choice filling planner and rank analysis tool for JoSAA engineering admissions.",
+  "fullDesc":  "An automated choice-filling helper and cutoff analysis tool designed for students navigating the JoSAA (Joint Seat Allocation Authority) admission rounds in India.\n\nCore Idea:\nThe project helps applicants optimize their seat allocation probability by parsing previous years' opening and closing rank matrices. It generates a ranked list of choice preferences based on student ranks, categories, and branch priorities, ensuring candidates do not miss out due to manual error.",
+  "tags":      ["JavaScript", "Web", "Analysis", "API"],
+  "links": [
+    { "label": "Open Site", "url": "https://councelling.vercel.app/", "type": "live" },
+    { "label": "UI Repository", "url": "https://github.com/Rupya2012/councelling", "type": "external" }
+  ],
+  "highlights": [
+    "Algorithmic choice order generator using previous admission cutoffs",
+    "Fast query processing for rank-range filtering and branch priorities",
+    "Clean web interface with interactive filters"
+  ],
+  "techStack": ["JavaScript", "HTML/CSS", "Vercel", "JSON"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

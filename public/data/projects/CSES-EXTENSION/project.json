@@ -1,0 +1,17 @@
+{
+  "repoName":  "CSES-EXTENSION",
+  "displayName": "CSES Extension",
+  "icon":      "🔌",
+  "shortDesc": "VS Code extension for viewing, testing, and submitting CSES solutions.",
+  "fullDesc":  "A custom VS Code extension designed to bring the popular CSES (Computer Science Educational Submissions) Problem Set directly into the development environment.\n\nCore Idea:\nInstead of switching between the browser and the text editor, this extension loads problem descriptions in a side panel inside VS Code, automatically runs code against local test cases, and submits solutions directly to the CSES online judge platform using secure API integration.",
+  "tags":      ["TypeScript", "VS Code", "Extension", "CP"],
+  "highlights": [
+    "Integrated panel to read CSES problem statements",
+    "Local test suite execution with side-by-side input/output diffing",
+    "Automated session-based submission flow directly from the editor"
+  ],
+  "techStack": ["TypeScript", "VS Code Extension API", "Node.js"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

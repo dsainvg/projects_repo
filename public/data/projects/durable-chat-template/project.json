@@ -1,19 +1,21 @@
 {
   "repoName":  "durable-chat-template",
-  "icon":      "💬",
-  "shortDesc": "Durable real-time chat built with TypeScript and Cloudflare Durable Objects.",
-  "fullDesc":  "A template for highly scalable, real-time web applications deployed directly on Cloudflare's edge network.\n\nCore Idea:\nInstead of routing websocket connections to a centralised database or application server, this template utilizes Cloudflare Durable Objects to store session and message state directly inside active coordinate workers. This guarantees strong consistency and microsecond-level latency by co-locating room coordination logic and connection handling within the same active compute instance near users.",
-  "tags":      ["TypeScript", "Web", "Real-time", "Cloudflare", "Edge", "WebSockets"],
+  "displayName": "Todo App",
+  "icon":      "✅",
+  "shortDesc": "Offline-first collaborative Todo application with real-time synchronization.",
+  "fullDesc":  "A collaborative, real-time Todo application featuring offline-first capabilities and instant peer synchronization. The project is split into a modern web client and a companion command line client (sync-app-cli).\n\nCore Idea:\nThe app leverages Cloudflare Durable Objects to store session and task logs directly in coordinate edge workers. If a client goes offline, mutations are queued locally and automatically merged upon reconnection. This guarantees strong consistency, offline-first reliability, and low-latency sync without database configurations.",
+  "tags":      ["TypeScript", "Web", "Real-time", "Cloudflare", "Edge", "WebSockets", "CLI"],
   "links": [
     { "label": "Open Site",  "url": "https://todo.dsainvg.me",  "type": "live" }
   ],
   "highlights": [
     "State persistence via Cloudflare Durable Objects",
-    "Real-time low-latency coordination using WebSockets",
-    "Completely serverless edge deployment with zero database configuration",
-    "Modern, responsive responsive UI styled with custom CSS variables"
+    "Companion sync-app-cli interface for terminal-based task updates",
+    "Offline queueing with automatic conflict-free reconnection sync",
+    "Real-time WebSocket event bus for instant user updates"
   ],
-  "techStack": ["TypeScript", "Cloudflare Workers", "Durable Objects", "WebSockets", "HTML/CSS"],
+  "techStack": ["TypeScript", "Cloudflare Workers", "Durable Objects", "WebSockets", "Node.js", "CLI"],
+  "subRepos":  ["sync-app-cli"],
   "status":    "Active",
   "featured":  false
 }

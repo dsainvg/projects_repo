@@ -46,7 +46,7 @@ export async function fetchRepos(onSuccess, onError) {
     state.filteredProjects = [...projects];
     state.loaded           = true;
 
-    updateStats(projects, langColors);
+    updateStats(projects, repos.length);
     onSuccess(projects);
 
   } catch (err) {
@@ -113,12 +113,12 @@ function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
 }
 
 /* ── Animate stat counters ── */
-function updateStats(projects) {
+function updateStats(projects, totalRepos) {
   const langs      = new Set(projects.map(p => p.language).filter(Boolean));
   const liveCount  = projects.filter(p => p.liveUrl).length;
   const totalStars = projects.reduce((sum, p) => sum + p.stars, 0);
 
-  animateCount('statTotal', projects.length);
+  animateCount('statTotal', totalRepos);
   animateCount('statLive',  liveCount);
   animateCount('statLangs', langs.size);
   animateCount('statStars', totalStars);

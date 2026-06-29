@@ -1,0 +1,20 @@
+{
+  "repoName":  "hosted-tictactoe",
+  "displayName": "Tic-Tac-Toe ML",
+  "icon":      "❌",
+  "shortDesc": "Interactive Tic-Tac-Toe powered by a custom reinforcement learning model.",
+  "fullDesc":  "A complete Tic-Tac-Toe game hosted on the web that plays against users using an AI agent trained from scratch using reinforcement learning.\n\nCore Idea:\nThe project consists of a Python model trainer (Tic-tac-toe-model) implementing Q-Learning to train the computer to make optimal moves. The trained policy is exported as JSON and evaluated in the frontend client (hosted-tictactoe) to play games in real time with zero latency and zero server-side computation.",
+  "tags":      ["Python", "Machine Learning", "Q-Learning", "JavaScript", "Web"],
+  "links": [
+    { "label": "Open Live", "url": "https://hosted-tictactoe.pages.dev/", "type": "live" }
+  ],
+  "highlights": [
+    "Q-Learning reinforcement learning agent trained locally in Python",
+    "Zero-server inference by running the policy engine directly in the browser JS",
+    "Clean, interactive layout with win/loss trackers and difficulty modes"
+  ],
+  "techStack": ["Python", "Jupyter Notebook", "JavaScript", "HTML/CSS", "Reinforcement Learning"],
+  "subRepos":  ["Tic-tac-toe-model"],
+  "status":    "Active",
+  "featured":  false
+}

@@ -1,0 +1,17 @@
+{
+  "repoName":  "VCF",
+  "displayName": "VCF Generator",
+  "icon":      "📇",
+  "shortDesc": "Spreadsheet-to-VCF converter for batch contact imports.",
+  "fullDesc":  "A data formatting utility designed to convert Excel (.xlsx) and CSV lists of contacts into standardized Virtual Contact Files (.vcf).\n\nCore Idea:\nThe project simplifies importing large contact lists into mobile devices and email clients. It reads contact rows, parses fields (name, phone, email, organization), and formats them into VCF v3.0 standard files ready for bulk importing.",
+  "tags":      ["Python", "Utility", "Data Formatting"],
+  "highlights": [
+    "Converts thousands of rows of contacts into VCF standard in seconds",
+    "Handles custom field mapping dynamically",
+    "Generated files are compatible with all modern smartphones and email clients"
+  ],
+  "techStack": ["Python", "Pandas", "Data Processing"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

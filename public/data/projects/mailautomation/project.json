@@ -1,0 +1,17 @@
+{
+  "repoName":  "mailautomation",
+  "displayName": "Mail Automation",
+  "icon":      "✉️",
+  "shortDesc": "Bulk email automation script with dynamic templating.",
+  "fullDesc":  "A bulk email scripting automation tool designed to send personalized, template-based emails from Excel/CSV spreadsheet records.\n\nCore Idea:\nThe script automates mass mailing tasks by reading recipient emails and merge-tags from spreadsheets, dynamically compiling HTML email templates with custom text injection, and sending them securely via SMTP or Gmail API integration, including support for rate limiting to avoid spam filters.",
+  "tags":      ["Python", "Automation", "Email", "Scripting"],
+  "highlights": [
+    "Compiles HTML/text email templates dynamically from CSV records",
+    "Handles secure authentication and attachments automatically",
+    "Supports customized delays and batch sizes for delivery"
+  ],
+  "techStack": ["Python", "SMTP", "Pandas", "Automation Scripting"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

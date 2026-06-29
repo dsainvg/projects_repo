@@ -1,0 +1,17 @@
+{
+  "repoName":  "VSCODEEXT",
+  "displayName": "VS Code Extension Sandbox",
+  "icon":      "💻",
+  "shortDesc": "VS Code extension sandbox exploring editor customizations.",
+  "fullDesc":  "A sandbox development repository demonstrating how to write custom extension commands, workspace helpers, and UI widgets using the VS Code Extension API.\n\nCore Idea:\nThe project serves as a reference implementation for extension capabilities, exploring sidebar integrations, status bar buttons, custom commands, and context menus to enrich developer workflows.",
+  "tags":      ["TypeScript", "VS Code", "Extension"],
+  "highlights": [
+    "Reference implementations of custom VS Code API integrations",
+    "Automated commands, shortcuts, and diagnostics examples",
+    "Lightweight and structured code suitable for extension bootstrapping"
+  ],
+  "techStack": ["TypeScript", "VS Code Extension API", "Node.js"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}

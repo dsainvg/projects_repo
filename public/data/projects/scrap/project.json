@@ -1,0 +1,17 @@
+{
+  "repoName":  "scrap",
+  "displayName": "CSE KGP Scraper",
+  "icon":      "🔍",
+  "shortDesc": "Crawler and search indexer for the IIT KGP CSE department website.",
+  "fullDesc":  "A custom web crawler, parser, and search indexer built to index and query information from all subpages of the Indian Institute of Technology Kharagpur Computer Science & Engineering department website.\n\nCore Idea:\nThe scraper traverses site structures, extracts text, announcements, faculty directories, and course material links, and structures them into a queryable local database, serving as a fast search utility for students and faculty.",
+  "tags":      ["Python", "Web Scraping", "Search Engine", "Database"],
+  "highlights": [
+    "Traverses deep nested structures of the CSE IIT KGP department site",
+    "Extracts structured datasets for research papers, notices, and directories",
+    "Builds a queryable local index for rapid search and matching"
+  ],
+  "techStack": ["Python", "BeautifulSoup", "SQLite", "Scrapy"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}
