@@ -56,6 +56,8 @@
   "excludedRepos": [
     "dsainvg.github.io",
     "dsainvg.me",
+    "dsainvg",
+    "Loginpage",
     "enigma_st_app",
     "npuserver",
     "encryptionAlgorithm",
@@ -64,7 +66,9 @@
     "openvino-model-conv",
     "orch-lib",
     "orch-vscode-extension",
-    "documentation-aeon"
+    "documentation-aeon",
+    "mat_nets",
+    "capsule_nets"
   ],
 
   "langColors": {
@@ -89,6 +93,9 @@
     "encryptionAlgorithm": "enigma",
     "orch-lib": "software_eng_lab_project",
     "orch-vscode-extension": "software_eng_lab_project",
-    "documentation-aeon": "software_eng_lab_project"
+    "documentation-aeon": "software_eng_lab_project",
+    "mat_nets": "MATNETS",
+    "capsule_nets": "MATNETS",
+    "Loginpage": "index.html"
   }
 }
