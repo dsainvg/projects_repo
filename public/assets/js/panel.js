@@ -135,8 +135,10 @@ function fillLinks(p) {
     }
   }
 
-  // Always include GitHub
-  links.push(buildLink('Source Code', p.githubUrl, 'github'));
+  // Include GitHub if present
+  if (p.githubUrl) {
+    links.push(buildLink('Source Code', p.githubUrl, 'github'));
+  }
 
   el.innerHTML = links.join('');
 

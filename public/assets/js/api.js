@@ -34,10 +34,10 @@ export async function fetchRepos(onSuccess, onError) {
       fetchJSON(GITHUB_API),
     ]);
 
-    const { excludedRepos = [], langColors = {} } = settings;
+    const { excludedRepos = [], extraProjects = [], langColors = {} } = settings;
 
-    // 2. Try to load a JSON file for every repo (fire in parallel, ignore 404s)
-    const projectJSONs = await loadProjectFiles(repos, excludedRepos);
+    // 2. Try to load a JSON file for every repo + extra projects (ignore 404s)
+    const projectJSONs = await loadProjectFiles(repos, excludedRepos, extraProjects);
 
     // 3. Merge API data with project JSON overrides
     const projects = mergeProjects(repos, projectJSONs, langColors, excludedRepos);
@@ -56,20 +56,23 @@ export async function fetchRepos(onSuccess, onError) {
 }
 
 /* ── Load all project JSON files in parallel ── */
-async function loadProjectFiles(repos, excludedRepos) {
+async function loadProjectFiles(repos, excludedRepos, extraProjects = []) {
+  const names = repos
+    .filter(r => !excludedRepos.includes(r.name))
+    .map(r => r.name)
+    .concat(extraProjects);
+
   const results = await Promise.allSettled(
-    repos
-      .filter(r => !excludedRepos.includes(r.name))
-      .map(async r => {
-        const data = await fetchJSON(`${PROJECT_BASE}${r.name}/project.json`).catch(() => null);
-        return { repoName: r.name, data };
-      })
+    names.map(async name => {
+      const data = await fetchJSON(`${PROJECT_BASE}${name}/project.json`).catch(() => null);
+      return { repoName: name, data };
+    })
   );
 
   // Build a map: repoName → project JSON (or null if file doesn't exist)
   const map = {};
   results.forEach(r => {
-    if (r.status === 'fulfilled' && r.value) {
+    if (r.status === 'fulfilled' && r.value && r.value.data) {
       map[r.value.repoName] = r.value.data;
     }
   });
@@ -78,9 +81,11 @@ async function loadProjectFiles(repos, excludedRepos) {
 
 /* ── Merge GitHub API repo + project JSON override ── */
 function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
-  return repos
+  const mergedNames = new Set();
+  const list = repos
     .map(repo => {
       const cfg = projectJSONs[repo.name] ?? {};
+      mergedNames.add(repo.name);
 
       return {
         id:         repo.id,
@@ -110,6 +115,41 @@ function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
       };
     })
     .filter(p => !excludedRepos.includes(p.name));
+
+  // Append extra projects that are not on GitHub
+  Object.keys(projectJSONs).forEach(name => {
+    if (!mergedNames.has(name) && projectJSONs[name]) {
+      const cfg = projectJSONs[name];
+      list.push({
+        id:         name,
+        name:       name,
+        fullName:   name,
+        displayName: cfg.displayName ?? formatName(name),
+        desc:       cfg.shortDesc   ?? 'No description available.',
+        fullDesc:   cfg.fullDesc    ?? 'No description available.',
+        icon:       cfg.icon        ?? '📚',
+        tags:       cfg.tags        ?? [],
+        language:   cfg.language    ?? null,
+        langColor:  langColors[cfg.language] ?? '#8b5cf6',
+        liveUrl:    cfg.liveUrl     ?? null,
+        docsUrl:    cfg.docsUrl     ?? null,
+        links:      cfg.links       ?? null,
+        githubUrl:  cfg.githubUrl   ?? null,
+        subRepos:   cfg.subRepos    ?? [],
+        stars:      0,
+        forks:      0,
+        archived:   false,
+        status:     cfg.status      ?? 'Active',
+        featured:   cfg.featured    ?? false,
+        openIssues: 0,
+        license:    null,
+        updatedAt:  cfg.updatedAt ? new Date(cfg.updatedAt) : new Date(),
+        createdAt:  cfg.createdAt ? new Date(cfg.createdAt) : new Date(),
+      });
+    }
+  });
+
+  return list;
 }
 
 /* ── Animate stat counters ── */

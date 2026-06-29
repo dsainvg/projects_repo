@@ -49,7 +49,7 @@ const SETTINGS_URL = 'data/_settings.json';
       fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
     ]);
 
-    const project = mergeData(name, cfg, ghData, settings.langColors ?? {});
+    const project = mergeData(name, cfg, ghData, settings);
     document.getElementById('pageMeta').content = project.shortDesc;
     document.getElementById('bcCurrent').textContent = project.displayName;
     document.title = `${project.displayName} — Durga Sai Projects`;
@@ -69,7 +69,11 @@ const SETTINGS_URL = 'data/_settings.json';
 })();
 
 /* ── Merge config + GitHub API ── */
-function mergeData(name, cfg, gh, langColors) {
+function mergeData(name, cfg, gh, settings) {
+  const langColors = settings.langColors ?? {};
+  const isExtra = settings.extraProjects && settings.extraProjects.includes(name);
+  const defaultGithubUrl = isExtra ? null : `https://github.com/${GITHUB_USER}/${name}`;
+
   return {
     name,
     displayName: cfg.displayName ?? formatName(name),
@@ -85,7 +89,7 @@ function mergeData(name, cfg, gh, langColors) {
     reports:    cfg.reports     ?? [],
     timeline:   cfg.timeline    ?? [],
     subRepos:   cfg.subRepos    ?? [],
-    githubUrl:  gh.html_url     ?? `https://github.com/${GITHUB_USER}/${name}`,
+    githubUrl:  gh.html_url     ?? cfg.githubUrl ?? defaultGithubUrl,
     language:   gh.language     ?? null,
     langColor:  langColors[gh.language] ?? '#8b5cf6',
     stars:      gh.stargazers_count ?? 0,
@@ -137,7 +141,7 @@ function renderHero(p) {
   // Hero links — primary ones (live + github)
   const links = [];
   if (p.liveUrl) links.push(mkLink('Open Live', p.liveUrl, 'live'));
-  links.push(mkLink('Source Code', p.githubUrl, 'github'));
+  if (p.githubUrl) links.push(mkLink('Source Code', p.githubUrl, 'github'));
   document.getElementById('ppHeroLinks').innerHTML = links.join('');
 }
 
@@ -265,7 +269,9 @@ function renderAllLinks(p) {
     if (p.liveUrl)  links.push(mkLink('Open Live', p.liveUrl, 'live'));
     if (p.docsUrl && p.docsUrl !== p.liveUrl) links.push(mkLink('Docs', p.docsUrl, 'docs'));
   }
-  links.push(mkLink('Source Code', p.githubUrl, 'github'));
+  if (p.githubUrl) {
+    links.push(mkLink('Source Code', p.githubUrl, 'github'));
+  }
 
   el.innerHTML = `<div class="pp-all-links">${links.join('')}</div>`;
 
@@ -286,6 +292,13 @@ function renderAllLinks(p) {
 /* ── Repo stats (sidebar) ── */
 function renderRepoStats(p) {
   const el = document.getElementById('ppRepoStats');
+  const card = el.closest('.pp-sidebar-card');
+  if (!p.githubUrl) {
+    if (card) card.style.display = 'none';
+    return;
+  }
+  if (card) card.style.display = '';
+
   const rows = [
     repoRow(githubSvg(), 'Repository', `<a href="${p.githubUrl}" target="_blank" rel="noopener" style="color:var(--accent-1)">${GITHUB_USER}/${p.name}</a>`),
     p.language ? repoRow('', 'Language', `<span style="color:${p.langColor}">${p.language}</span>`) : null,

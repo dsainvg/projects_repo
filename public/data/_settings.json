@@ -96,6 +96,10 @@
     "sync-app-cli"
   ],
 
+  "extraProjects": [
+    "sem5"
+  ],
+
   "langColors": {
     "Python":           "#3572a5",
     "JavaScript":       "#f1e05a",

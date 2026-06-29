@@ -1,0 +1,20 @@
+{
+  "repoName":  "sem5",
+  "displayName": "Semester 5 Resources",
+  "icon":      "📚",
+  "shortDesc": "Academic resource sharing portal for Semester 5 Computer Science at IIT Kharagpur.",
+  "fullDesc":  "A centralized academic resources portal created to aggregate and structure Semester 5 Computer Science coursework materials at IIT Kharagpur. It hosts course slides, syllabus directories, reference books, past exam papers, and laboratory assignment templates.\n\nCore Idea:\nStudents often struggle to find study resources across scattered drives and channels. This portal aggregates documents by course codes and topics, making it extremely easy to navigate, view, and download study guides and exam resources dynamically.",
+  "tags":      ["Academic", "Web", "Resources", "Education"],
+  "links": [
+    { "label": "Open Portal", "url": "https://sem5.dsainvg.me", "type": "live" }
+  ],
+  "highlights": [
+    "Structures documents and syllabus topics by course code",
+    "Centralized portal to download past midterm and endterm exam papers",
+    "Hosted collection of laboratory codes, guidelines, and reference books"
+  ],
+  "techStack": ["HTML/CSS", "JavaScript", "Vercel"],
+  "subRepos":  [],
+  "status":    "Active",
+  "featured":  false
+}
