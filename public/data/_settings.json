@@ -68,7 +68,17 @@
     "orch-vscode-extension",
     "documentation-aeon",
     "mat_nets",
-    "capsule_nets"
+    "capsule_nets",
+    "Automater",
+    "Blocks_Catcher",
+    "Book_Store",
+    "collagefest22",
+    "Connect4",
+    "Fest_Page",
+    "kodeinkgp",
+    "Space_Fest",
+    "Teams-page-spats",
+    "WeatherReport"
   ],
 
   "langColors": {

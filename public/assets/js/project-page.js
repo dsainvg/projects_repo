@@ -11,7 +11,7 @@
  * Then renders the full project page.
  */
 
-import { langIcon, formatName, timeAgo } from './utils.js';
+import { langIcon, formatName, timeAgo, toggleSubRepoElement } from './utils.js';
 
 const GITHUB_USER = 'dsainvg';
 const SETTINGS_URL = 'data/_settings.json';
@@ -237,11 +237,21 @@ function renderSubRepos(p) {
   const sec = document.getElementById('sec-subrepos');
   if (!p.subRepos.length) return;
   sec.style.display = '';
-  document.getElementById('ppSubRepos').innerHTML =
-    p.subRepos.map(r => `
-      <a href="https://github.com/${GITHUB_USER}/${r}" target="_blank" rel="noopener" class="pp-subrepo">
-        ${subSvg()} ${formatName(r)}
-      </a>`).join('');
+  
+  const el = document.getElementById('ppSubRepos');
+  el.innerHTML = p.subRepos.map(r => `
+    <div class="subrepo-item">
+      <button class="subrepo-header" data-repo="${r}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" class="subrepo-chevron"><polyline points="9 18 15 12 9 6"/></svg>
+        ${formatName(r)}
+      </button>
+      <div class="subrepo-body collapsed"></div>
+    </div>
+  `).join('');
+
+  el.querySelectorAll('.subrepo-header').forEach(btn => {
+    btn.addEventListener('click', () => toggleSubRepoElement(btn));
+  });
 }
 
 /* ── All links (sidebar) ── */
