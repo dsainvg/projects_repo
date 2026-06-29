@@ -1,16 +1,19 @@
 {
   "repoName":  "VSCODEEXT",
-  "displayName": "VS Code Extension Sandbox",
-  "icon":      "💻",
-  "shortDesc": "VS Code extension sandbox exploring editor customizations.",
-  "fullDesc":  "A sandbox development repository demonstrating how to write custom extension commands, workspace helpers, and UI widgets using the VS Code Extension API.\n\nCore Idea:\nThe project serves as a reference implementation for extension capabilities, exploring sidebar integrations, status bar buttons, custom commands, and context menus to enrich developer workflows.",
-  "tags":      ["TypeScript", "VS Code", "Extension"],
-  "highlights": [
-    "Reference implementations of custom VS Code API integrations",
-    "Automated commands, shortcuts, and diagnostics examples",
-    "Lightweight and structured code suitable for extension bootstrapping"
+  "displayName": "AUTO DATE",
+  "icon":      "📅",
+  "shortDesc": "VS Code extension to create serial date-based C++ templates and archive binaries.",
+  "fullDesc":  "AUTO DATE is a custom VS Code extension published to the Visual Studio Code Marketplace, designed to streamline file creation and directory management for competitive programmers and C++ developers.\n\nCore Idea:\nThe extension automates the creation of serial, date-based source files (named in the format YYYYMMDD-Serial.cpp) in the workspace root, initializing them with a boilerplate template. It also helps developers maintain a clean workspace by archiving source codes and compiled binaries into a dedicated folder with a keyboard shortcut.",
+  "tags":      ["TypeScript", "VS Code", "Extension", "C++", "CP"],
+  "links": [
+    { "label": "VS Code Marketplace", "url": "https://marketplace.visualstudio.com/items?itemName=dsainvg.auto-date-file-cpp-maker", "type": "external" }
   ],
-  "techStack": ["TypeScript", "VS Code Extension API", "Node.js"],
+  "highlights": [
+    "Creates date-named C++ templates instantly via Ctrl+N Ctrl+C",
+    "Cleans and archives compiled binaries and source codes via Ctrl+N Ctrl+M",
+    "Lightweight and optimized bundling using esbuild"
+  ],
+  "techStack": ["TypeScript", "VS Code Extension API", "Node.js", "esbuild"],
   "subRepos":  [],
   "status":    "Active",
   "featured":  false
