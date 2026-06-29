@@ -41,6 +41,12 @@
   ],
 
   "subRepos":   ["npuserver", "data_qwen3.5_4B_finetune", "nervi-finetunes-and-convertors", "openvino-model-conv"],
+  "subRepoOverviews": {
+    "npuserver": "A lightweight Python Flask server wrapping the OpenVINO GenAI runtime. It exposes an OpenAI-compatible /v1/chat/completions API, enabling standard OpenAI SDK integrations to interface with the local Intel NPU with zero code changes.",
+    "data_qwen3.5_4B_finetune": "Training pipelines, datasets, and scripts for instruction-tuning and fine-tuning the Qwen-3.5 4B model using PEFT/LoRA. Includes data tokenization, training scripts, and output checkpoints evaluation.",
+    "nervi-finetunes-and-convertors": "A collection of model converters and formatting utilities designed to translate fine-tuned PyTorch checkpoints into OpenVINO Intermediate Representation (IR) formats for NPU compilation.",
+    "openvino-model-conv": "Proof-of-concept repository verifying conversion steps for Large Language Models (including Qwen and DeepSeek architectures) to optimize NPU activation maps and memory foot-print."
+  },
   "status":     "Active",
   "featured":   true
 }

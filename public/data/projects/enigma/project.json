@@ -26,6 +26,12 @@
   ],
   "techStack": ["C++", "Python", "pybind11", "MkDocs", "Streamlit"],
   "subRepos":  ["enigma_st_app", "encryptionAlgorithm", "encryption-cli", "encryptionAlgorithmApplication"],
+  "subRepoOverviews": {
+    "enigma_st_app": "A web interface built in Streamlit providing an interactive user interface to run block-cipher file encryption and password hashing benchmarks live in the browser.",
+    "encryptionAlgorithm": "The primary, low-level prototype implementation of the Substitution-Permutation Network (SPN) cipher, exploring bit-level S-Boxes, P-Boxes, and key scheduling logic.",
+    "encryption-cli": "A Command Line Interface tool compiled in C++ that enables quick file and stream encryption using raw Enigma primitives directly from the terminal.",
+    "encryptionAlgorithmApplication": "A graphical desktop wrapper application built around the Enigma encryption library for convenient file locking, unlocking, and key management."
+  },
   "status":    "Active",
   "featured":  true
 }

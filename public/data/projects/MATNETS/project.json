@@ -25,6 +25,11 @@
   ],
   "techStack": ["Python", "JAX", "NumPy", "Flax", "Deep Learning"],
   "subRepos":  ["mat_nets", "capsule_nets", "TMRM"],
+  "subRepoOverviews": {
+    "mat_nets": "A legacy, precursor implementation of matrix-valued neural layers and MNIST benchmarking scripts, exploring early tensor contraction ideas.",
+    "capsule_nets": "JAX-based Capsule Network models built to benchmark matrix-neuron parameter efficiency against standard convolutional activations.",
+    "TMRM": "A variation of the matrix-neuron architecture implementing recursive matrix activations (failed variation exploring deep feed-forward structures)."
+  },
   "status":    "Active",
   "featured":  true
 }

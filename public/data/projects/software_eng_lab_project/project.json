@@ -27,6 +27,11 @@
     }
   ],
   "subRepos":   ["orch-lib", "orch-vscode-extension", "documentation-aeon"],
+  "subRepoOverviews": {
+    "orch-lib": "A Python execution engine runtime package distributed on PyPI. It handles the compiled AST output, schedules tasks, routes agent messages, and executes state-space steps for multi-agent workflows.",
+    "orch-vscode-extension": "A TypeScript-based VS Code extension published to the VS Code Marketplace, providing rich editor features (lexer-matched syntax highlighting, snippets, diagnostics, and hovering).",
+    "documentation-aeon": "Markdown source files and layouts of the compiler user documentation site, describing the language syntax, installation guides, and multi-agent compile targets."
+  },
   "status":     "Active",
   "featured":   true
 }

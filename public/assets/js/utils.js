@@ -89,6 +89,7 @@ export async function toggleSubRepoElement(btn) {
   if (!body) return;
   
   const repoName = btn.dataset.repo;
+  const customOverview = btn.dataset.overview;
   const isOpen = container.classList.toggle('open');
   
   if (isOpen) {
@@ -105,7 +106,7 @@ export async function toggleSubRepoElement(btn) {
         if (!res.ok) throw new Error(`${res.status}`);
         const data = await res.json();
         
-        const desc = data.description || 'No description available.';
+        const desc = customOverview || data.description || 'No description available.';
         const stars = data.stargazers_count;
         const forks = data.forks_count;
         const lang = data.language || '';
@@ -129,8 +130,10 @@ export async function toggleSubRepoElement(btn) {
         body.dataset.loaded = 'true';
         body.style.maxHeight = body.scrollHeight + 'px';
       } catch (err) {
+        const desc = customOverview || 'Could not load description automatically.';
+        const classNames = customOverview ? 'subrepo-desc' : 'subrepo-desc-error';
         body.innerHTML = `
-          <p class="subrepo-desc-error">Could not load description automatically.</p>
+          <p class="${classNames}">${desc}</p>
           <div class="subrepo-meta">
             <a href="https://github.com/dsainvg/${repoName}" target="_blank" rel="noopener noreferrer" class="subrepo-git-link">
               View on GitHub →

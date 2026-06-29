@@ -15,6 +15,9 @@
   ],
   "techStack": ["Python", "Jupyter Notebook", "JavaScript", "HTML/CSS", "Reinforcement Learning"],
   "subRepos":  ["Tic-tac-toe-model"],
+  "subRepoOverviews": {
+    "Tic-tac-toe-model": "Python training code, algorithms, and notebooks training a reinforcement learning Q-Agent to execute optimal moves."
+  },
   "status":    "Active",
   "featured":  false
 }

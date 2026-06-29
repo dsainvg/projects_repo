@@ -16,6 +16,9 @@
   ],
   "techStack": ["TypeScript", "Cloudflare Workers", "Durable Objects", "WebSockets", "Node.js", "CLI"],
   "subRepos":  ["sync-app-cli"],
+  "subRepoOverviews": {
+    "sync-app-cli": "A companion Node.js command line client interface supporting local task mutations and background synchronization via persistent WebSockets."
+  },
   "status":    "Active",
   "featured":  false
 }

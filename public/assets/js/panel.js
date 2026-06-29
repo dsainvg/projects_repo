@@ -164,15 +164,18 @@ function fillSubRepos(p) {
   }
 
   section.classList.remove('hidden');
-  el.innerHTML = p.subRepos.map(r => `
-    <div class="subrepo-item">
-      <button class="subrepo-header" data-repo="${r}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" class="subrepo-chevron"><polyline points="9 18 15 12 9 6"/></svg>
-        ${formatName(r)}
-      </button>
-      <div class="subrepo-body collapsed"></div>
-    </div>
-  `).join('');
+  el.innerHTML = p.subRepos.map(r => {
+    const overview = p.subRepoOverviews?.[r] ?? '';
+    return `
+      <div class="subrepo-item">
+        <button class="subrepo-header" data-repo="${r}" data-overview="${escHtml(overview)}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" class="subrepo-chevron"><polyline points="9 18 15 12 9 6"/></svg>
+          ${formatName(r)}
+        </button>
+        <div class="subrepo-body collapsed"></div>
+      </div>
+    `;
+  }).join('');
 
   el.querySelectorAll('.subrepo-header').forEach(btn => {
     btn.addEventListener('click', () => toggleSubRepoElement(btn));
