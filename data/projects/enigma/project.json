@@ -25,7 +25,7 @@
     "Comprehensive documentation built with MkDocs"
   ],
   "techStack": ["C++", "Python", "pybind11", "MkDocs", "Streamlit"],
-  "subRepos":  ["enigma_st_app"],
+  "subRepos":  ["enigma_st_app", "encryptionAlgorithm"],
   "status":    "Active",
   "featured":  true
 }

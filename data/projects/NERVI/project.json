@@ -40,7 +40,7 @@
     { "date": "Jun 2025",  "event": "Extension marketplace launched at nervi.dsainvg.me/marketplace" }
   ],
 
-  "subRepos":   ["npuserver"],
+  "subRepos":   ["npuserver", "data_qwen3.5_4B_finetune"],
   "status":     "Active",
   "featured":   true
 }

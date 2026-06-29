@@ -112,8 +112,11 @@ function fillLinks(p) {
   const el = document.getElementById('dwLinks');
   const links = [];
 
-  // Full page link — always first
-  links.push(`<a href="project.html?p=${encodeURIComponent(p.name)}" class="dw-link dw-link-fullpage">
+  const projectUrl = location.protocol === 'file:'
+    ? `project.html?p=${encodeURIComponent(p.name)}`
+    : `${encodeURIComponent(p.name)}`;
+
+  links.push(`<a href="${projectUrl}" class="dw-link dw-link-fullpage">
     ${pageSvg()} Full Details Page
   </a>`);
 

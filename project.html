@@ -2,6 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function() {
+      const loc = window.location;
+      const segments = loc.pathname.split('/').filter(Boolean);
+      const last = segments[segments.length - 1];
+      if (last && last !== 'project.html' && last !== 'index.html' && !last.endsWith('.html')) {
+        segments.pop();
+      } else {
+        segments.pop();
+      }
+      const baseDir = '/' + segments.join('/') + (segments.length ? '/' : '');
+      const baseEl = document.createElement('base');
+      baseEl.href = loc.origin + baseDir;
+      document.head.insertBefore(baseEl, document.head.firstChild);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="pageTitle">Project — Durga Sai</title>
   <meta name="description" id="pageMeta" content="Project details by Durga Sai" />

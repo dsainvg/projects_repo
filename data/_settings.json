@@ -57,7 +57,9 @@
     "dsainvg.github.io",
     "dsainvg.me",
     "enigma_st_app",
-    "npuserver"
+    "npuserver",
+    "encryptionAlgorithm",
+    "data_qwen3.5_4B_finetune"
   ],
 
   "langColors": {
@@ -72,5 +74,11 @@
     "Java":             "#b07219",
     "Shell":            "#89e051",
     "Jupyter Notebook": "#da5b0b"
+  },
+  "redirects": {
+    "npuserver": "NERVI",
+    "data_qwen3.5_4B_finetune": "NERVI",
+    "enigma_st_app": "enigma",
+    "encryptionAlgorithm": "enigma"
   }
 }

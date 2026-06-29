@@ -18,16 +18,33 @@ const SETTINGS_URL = 'data/_settings.json';
 
 /* ── Bootstrap ── */
 (async function init() {
-  const name = new URLSearchParams(location.search).get('p');
-  if (!name) return showError('No project specified. Add ?p=RepoName to the URL.');
+  let name = new URLSearchParams(location.search).get('p');
+  if (!name) {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const last = segments[segments.length - 1];
+    if (last && last !== 'project.html' && last !== 'index.html' && !last.endsWith('.html')) {
+      name = last;
+    }
+  }
+
+  if (!name) return showError('No project specified.');
 
   // Update breadcrumb immediately
   document.getElementById('bcCurrent').textContent = formatName(name);
   document.title = `${formatName(name)} — Durga Sai`;
 
   try {
-    const [settings, cfg, ghData] = await Promise.all([
-      fetchJSON(SETTINGS_URL),
+    const settings = await fetchJSON(SETTINGS_URL);
+    if (settings.redirects && settings.redirects[name]) {
+      const parent = settings.redirects[name];
+      const targetUrl = location.protocol === 'file:'
+        ? `project.html?p=${encodeURIComponent(parent)}`
+        : `${encodeURIComponent(parent)}`;
+      location.replace(targetUrl);
+      return;
+    }
+
+    const [cfg, ghData] = await Promise.all([
       fetchJSON(`data/projects/${name}/project.json`).catch(() => ({})),
       fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
     ]);
