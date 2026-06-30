@@ -28,6 +28,7 @@ const SETTINGS_URL = 'data/_settings.json';
   }
 
   if (!name) return showError('No project specified.');
+  name = name.toLowerCase();
 
   // Update breadcrumb immediately
   document.getElementById('bcCurrent').textContent = formatName(name);
@@ -44,12 +45,34 @@ const SETTINGS_URL = 'data/_settings.json';
       return;
     }
 
-    const [cfg, ghData] = await Promise.all([
-      fetchJSON(`data/projects/${name}/project.json`).catch(() => ({})),
-      fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
-    ]);
+    // Try to load cached project details from sessionStorage
+    let project = null;
+    try {
+      const cached = sessionStorage.getItem(`project_${name}`);
+      if (cached) {
+        project = JSON.parse(cached);
+        if (project.updatedAt) project.updatedAt = new Date(project.updatedAt);
+        if (project.createdAt) project.createdAt = new Date(project.createdAt);
+      }
+    } catch (e) {
+      console.warn('Failed to parse cached project', e);
+    }
 
-    const project = mergeData(name, cfg, ghData, settings);
+    if (!project) {
+      const [cfg, ghData] = await Promise.all([
+        fetchJSON(`data/projects/${name}/project.json`).catch(() => ({})),
+        fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
+      ]);
+
+      project = mergeData(name, cfg, ghData, settings);
+
+      try {
+        sessionStorage.setItem(`project_${name}`, JSON.stringify(project));
+      } catch (e) {
+        console.warn('Failed to save project to cache', e);
+      }
+    }
+
     document.getElementById('pageMeta').content = project.shortDesc;
     document.getElementById('bcCurrent').textContent = project.displayName;
     document.title = `${project.displayName} — Durga Sai Projects`;
@@ -527,7 +550,7 @@ function parseMarkdownToHtml(md) {
 
 function parseInlineMarkdown(text) {
   if (!text) return '';
-  let s = escHtml(text);
+  let s = text;
   s = s.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/\*(.*?)\*/g, '<em>$1</em>');
   s = s.replace(/`(.*?)`/g, '<code>$1</code>');

@@ -1,5 +1,5 @@
 {
-  "repoName":   "NERVI",
+  "repoName":   "nervi",
   "icon":       "⚡",
   "shortDesc":  "Run local LLMs blazing fast on Intel NPU — fully offline, CLI-first, with an extension marketplace.",
   "fullDesc":   "A Go CLI tool that runs Large Language Models directly on Intel AI Boost NPU via OpenVINO GenAI. No GPU required, no cloud, no latency.\n\nNERVI is designed from first principles for Intel hardware — rather than layering on top of existing inference runtimes, it compiles models into native NPU blobs using OpenVINO, manages NPU memory explicitly, and exposes a clean CLI + interactive TUI.\n\nThe extension system lets users distribute custom tool integrations via the nervi.dsainvg.me/marketplace — similar to VS Code extensions but for LLM interactions.\n\nShips with npuserver — a Python/Flask backend that exposes an OpenAI-compatible /v1/chat/completions endpoint, enabling any OpenAI SDK client to use the local NPU model with zero code changes.",
@@ -25,7 +25,7 @@
   "reports": [
     {
       "title": "NERVI Project Report",
-      "file":  "NERVI/reports/NERVI_Project_Report.md",
+      "file":  "nervi/reports/NERVI_Project_Report.md",
       "desc":  "Comprehensive report: architectural breakdown, npuserver implementation, fine-tuning pipeline, extension runtime IPC, and deployment mechanics.",
       "date":  "2026-06",
       "type":  "markdown"

@@ -1,5 +1,5 @@
 {
-  "repoName":  "Circuit-Maker",
+  "repoName":  "circuit-maker",
   "displayName": "Circuit Maker",
   "icon":      "🤖",
   "shortDesc": "Intelligent logic gate optimizer finding minimal layouts for boolean transformations.",

@@ -1,5 +1,5 @@
 {
-  "repoName":  "VSCODEEXT",
+  "repoName":  "vscodeext",
   "displayName": "AUTO DATE",
   "icon":      "📅",
   "shortDesc": "VS Code extension to create serial date-based C++ templates and archive binaries.",

@@ -28,23 +28,52 @@ const PROJECT_BASE  = 'data/projects/';
 /* ── Public entry point ── */
 export async function fetchRepos(onSuccess, onError) {
   try {
+    // Try to load cached repository list from sessionStorage
+    try {
+      const cached = sessionStorage.getItem('allProjects');
+      const cachedTotal = sessionStorage.getItem('totalReposCount');
+      if (cached && cachedTotal) {
+        const projects = JSON.parse(cached);
+        projects.forEach(p => {
+          if (p.updatedAt) p.updatedAt = new Date(p.updatedAt);
+          if (p.createdAt) p.createdAt = new Date(p.createdAt);
+        });
+        state.allProjects      = projects;
+        state.filteredProjects = [...projects];
+        state.loaded           = true;
+        updateStats(projects, parseInt(cachedTotal, 10));
+        onSuccess(projects);
+        return;
+      }
+    } catch (e) {
+      console.warn('Failed to parse cached repositories list', e);
+    }
+
     // 1. Load settings + GitHub repos in parallel
     const [settings, repos] = await Promise.all([
       fetchJSON(SETTINGS_URL),
       fetchJSON(GITHUB_API),
     ]);
 
-    const { excludedRepos = [], extraProjects = [], langColors = {} } = settings;
+    const { excludedRepos = [], extraProjects = [], langColors = {}, redirects = {} } = settings;
 
     // 2. Try to load a JSON file for every repo + extra projects (ignore 404s)
-    const projectJSONs = await loadProjectFiles(repos, excludedRepos, extraProjects);
+    const projectJSONs = await loadProjectFiles(repos, excludedRepos, extraProjects, redirects);
 
     // 3. Merge API data with project JSON overrides
-    const projects = mergeProjects(repos, projectJSONs, langColors, excludedRepos);
+    const projects = mergeProjects(repos, projectJSONs, langColors, excludedRepos, redirects);
 
     state.allProjects      = projects;
     state.filteredProjects = [...projects];
     state.loaded           = true;
+
+    // Save to sessionStorage cache
+    try {
+      sessionStorage.setItem('allProjects', JSON.stringify(projects));
+      sessionStorage.setItem('totalReposCount', repos.length.toString());
+    } catch (e) {
+      console.warn('Failed to save repositories list to cache', e);
+    }
 
     updateStats(projects, repos.length);
     onSuccess(projects);
@@ -56,14 +85,16 @@ export async function fetchRepos(onSuccess, onError) {
 }
 
 /* ── Load all project JSON files in parallel ── */
-async function loadProjectFiles(repos, excludedRepos, extraProjects = []) {
+async function loadProjectFiles(repos, excludedRepos, extraProjects = [], redirects = {}) {
   const names = repos
     .filter(r => !excludedRepos.includes(r.name))
-    .map(r => r.name)
+    .map(r => redirects[r.name] ?? r.name)
     .concat(extraProjects);
 
+  const uniqueNames = [...new Set(names)];
+
   const results = await Promise.allSettled(
-    names.map(async name => {
+    uniqueNames.map(async name => {
       const data = await fetchJSON(`${PROJECT_BASE}${name}/project.json`).catch(() => null);
       return { repoName: name, data };
     })
@@ -80,18 +111,20 @@ async function loadProjectFiles(repos, excludedRepos, extraProjects = []) {
 }
 
 /* ── Merge GitHub API repo + project JSON override ── */
-function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
+function mergeProjects(repos, projectJSONs, langColors, excludedRepos, redirects = {}) {
   const mergedNames = new Set();
   const list = repos
+    .filter(repo => !excludedRepos.includes(repo.name))
     .map(repo => {
-      const cfg = projectJSONs[repo.name] ?? {};
-      mergedNames.add(repo.name);
+      const mappedName = redirects[repo.name] ?? repo.name;
+      const cfg = projectJSONs[mappedName] ?? {};
+      mergedNames.add(mappedName);
 
       return {
         id:         repo.id,
-        name:       repo.name,
+        name:       mappedName,
         fullName:   repo.full_name,
-        displayName: cfg.displayName ?? formatName(repo.name),
+        displayName: cfg.displayName ?? formatName(mappedName),
         desc:       cfg.shortDesc   ?? repo.description  ?? 'No description available.',
         fullDesc:   cfg.fullDesc    ?? repo.description  ?? 'No description available.',
         icon:       cfg.icon        ?? langIcon(repo.language),
@@ -114,8 +147,7 @@ function mergeProjects(repos, projectJSONs, langColors, excludedRepos) {
         updatedAt:  new Date(repo.updated_at),
         createdAt:  new Date(repo.created_at),
       };
-    })
-    .filter(p => !excludedRepos.includes(p.name));
+    });
 
   // Append extra projects that are not on GitHub
   Object.keys(projectJSONs).forEach(name => {

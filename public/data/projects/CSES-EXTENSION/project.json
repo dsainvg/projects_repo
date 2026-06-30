@@ -1,5 +1,5 @@
 {
-  "repoName":  "CSES-EXTENSION",
+  "repoName":  "cses-extension",
   "displayName": "CSES Extension",
   "icon":      "🔌",
   "shortDesc": "VS Code extension for viewing, testing, and submitting CSES solutions.",

@@ -1,5 +1,5 @@
 {
-  "repoName":   "software_eng_lab_project",
+  "repoName":   "orch",
   "displayName": "ORCH",
   "icon":       "🎼",
   "shortDesc":  "Agent Graph Orchestration Language — a custom DSL, compiler, runtime, and IDE extension for multi-agent systems.",
@@ -20,7 +20,7 @@
   "reports": [
     {
       "title": "ORCH Project Report",
-      "file":  "software_eng_lab_project/reports/ORCH_Project_Report.md",
+      "file":  "orch/reports/ORCH_Project_Report.md",
       "desc":  "Comprehensive engineering log: architecture, compiler stages, runtime design, and VS Code extension integrations.",
       "date":  "2026-06",
       "type":  "markdown"

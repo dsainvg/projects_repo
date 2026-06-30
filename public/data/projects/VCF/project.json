@@ -1,5 +1,5 @@
 {
-  "repoName":  "VCF",
+  "repoName":  "vcf",
   "displayName": "VCF Generator",
   "icon":      "📇",
   "shortDesc": "Spreadsheet-to-VCF converter for batch contact imports.",

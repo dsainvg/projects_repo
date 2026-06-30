@@ -1,5 +1,5 @@
 {
-  "repoName":  "MATNETS",
+  "repoName":  "matnets",
   "icon":      "🧠",
   "shortDesc": "Matrix-neuron neural network research library — custom deep learning experiments built from scratch in JAX.",
   "fullDesc":  "MATNETS is a pure JAX research experiment that proposes a departure from conventional scalar neuron models. Instead of a scalar activation, MATNETS endows every neuron with an n × n matrix.\n\nCore Idea:\nIn conventional networks, forward propagation involves element-wise operations. MATNETS uses a tensor contraction formulation (via jax.numpy.einsum) to perform true matrix multiplication along inner indices for every neuron connection. This changes weight contractions into matrix-product operators and activation functions into structural transformations.\n\nThe library is built directly on JAX primitives to support out-of-the-box JIT compilation, vectorisation (vmap), auto-differentiation (grad), and custom training loops.",
@@ -11,7 +11,7 @@
   "reports": [
     {
       "title": "MATNETS Research Report",
-      "file":  "MATNETS/reports/MATNETS_Report.md",
+      "file":  "matnets/reports/MATNETS_Report.md",
       "desc":  "Algebraically-rich deep learning in JAX: core matrix-neuron formulation, neural layers, and MNIST parameter efficiency.",
       "date":  "2026-06",
       "type":  "markdown"
