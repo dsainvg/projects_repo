@@ -59,10 +59,14 @@ const SETTINGS_URL = 'data/_settings.json';
     }
 
     if (!project) {
-      const [cfg, ghData] = await Promise.all([
-        fetchJSON(`data/projects/${name}/project.json`).catch(() => ({})),
-        fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
-      ]);
+      // First load the project JSON to get the correct GitHub repo name
+      const cfg = await fetchJSON(`data/projects/${name}/project.json`).catch(() => ({}));
+      // Use cfg.repoName if set (handles cases where folder name ≠ GitHub repo name)
+      const githubRepoName = cfg.repoName ?? name;
+      const isExtraProject = (settings.extraProjects ?? []).includes(name);
+      const ghData = isExtraProject
+        ? {}
+        : await fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${githubRepoName}`).catch(() => ({}));
 
       project = mergeData(name, cfg, ghData, settings);
 
