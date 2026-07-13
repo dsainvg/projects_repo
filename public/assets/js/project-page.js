@@ -395,12 +395,14 @@ function openPreview(filePath, title, type) {
   } else {
     document.getElementById('markdownContent').style.display = 'none';
     document.getElementById('pdfFrame').style.display = 'block';
+    // Upgrade http → https to avoid Mixed Content blocks
+    const safeFilePath = filePath.replace(/^http:\/\//i, 'https://');
     if (type === 'pdf') {
       // Load PDF inline — append #toolbar=1&view=FitH to show browser PDF toolbar
-      document.getElementById('pdfFrame').src = filePath + '#toolbar=1&navpanes=0&view=FitH';
+      document.getElementById('pdfFrame').src = safeFilePath + '#toolbar=1&navpanes=0&view=FitH';
     } else {
       // General website preview
-      document.getElementById('pdfFrame').src = filePath;
+      document.getElementById('pdfFrame').src = safeFilePath;
     }
   }
 
