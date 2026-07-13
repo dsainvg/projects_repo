@@ -16,8 +16,8 @@ export default {
     const response = await env.ASSETS.fetch(request);
 
     // 2. If the asset was not found (404), rewrite the request to /project.html
-    // This serves the project details page while keeping the clean URL in the browser bar
-    if (response.status === 404) {
+    // Only for clean project slug URLs — never for /data/ or /assets/ or files with extensions.
+    if (response.status === 404 && !isAssetOrData && !hasExtension) {
       const rewriteUrl = new URL('/project', url.origin);
       const rewrittenRequest = new Request(rewriteUrl, request);
       return env.ASSETS.fetch(rewrittenRequest);
