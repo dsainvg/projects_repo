@@ -59,10 +59,20 @@ const SETTINGS_URL = 'data/_settings.json';
     }
 
     if (!project) {
-      // First load the project JSON to get the correct GitHub repo name
+      // Load the project JSON
       const cfg = await fetchJSON(`data/projects/${name}/project.json`).catch(() => ({}));
-      // Use cfg.repoName if set (handles cases where folder name ≠ GitHub repo name)
-      const githubRepoName = cfg.repoName ?? name;
+
+      // Build a reverse map: slug → actual GitHub repo name
+      // settings.redirects maps "GitHubRepoName" → "slug", so we invert it
+      const redirects = settings.redirects ?? {};
+      const reverseRedirects = {};
+      Object.entries(redirects).forEach(([ghName, slug]) => {
+        // Keep only the first match found for each slug
+        if (!(slug in reverseRedirects)) reverseRedirects[slug] = ghName;
+      });
+      // Priority: reverseRedirects lookup → cfg.repoName → url slug
+      const githubRepoName = reverseRedirects[name] ?? cfg.repoName ?? name;
+
       const isExtraProject = (settings.extraProjects ?? []).includes(name);
       const ghData = isExtraProject
         ? {}
