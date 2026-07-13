@@ -59,24 +59,13 @@ const SETTINGS_URL = 'data/_settings.json';
     }
 
     if (!project) {
-      // Load the project JSON
-      const cfg = await fetchJSON(`data/projects/${name}/project.json`).catch(() => ({}));
-
-      // Build a reverse map: slug → actual GitHub repo name
-      // settings.redirects maps "GitHubRepoName" → "slug", so we invert it
-      const redirects = settings.redirects ?? {};
-      const reverseRedirects = {};
-      Object.entries(redirects).forEach(([ghName, slug]) => {
-        // Keep only the first match found for each slug
-        if (!(slug in reverseRedirects)) reverseRedirects[slug] = ghName;
-      });
-      // Priority: reverseRedirects lookup → cfg.repoName → url slug
-      const githubRepoName = reverseRedirects[name] ?? cfg.repoName ?? name;
-
       const isExtraProject = (settings.extraProjects ?? []).includes(name);
-      const ghData = isExtraProject
-        ? {}
-        : await fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${githubRepoName}`).catch(() => ({}));
+      const [cfg, ghData] = await Promise.all([
+        fetchJSON(`data/projects/${name}/project.json`).catch(() => ({})),
+        isExtraProject
+          ? Promise.resolve({})
+          : fetchJSON(`https://api.github.com/repos/${GITHUB_USER}/${name}`).catch(() => ({})),
+      ]);
 
       project = mergeData(name, cfg, ghData, settings);
 
