@@ -1,0 +1,137 @@
+# Durga Sai (dsainvg) — Project Descriptions
+
+> Detailed companion to the short index at https://projects.dsainvg.me/llm.txt. Contains full descriptions, verified links, and tech stacks for all 18 projects. For biography, skills, experience, and contact, read https://dsainvg.me/llm.txt. Repositories: https://github.com/dsainvg
+
+## Featured
+
+## NERVI (nervi)
+
+NERVI runs Large Language Models fully offline on Intel AI Boost NPU via OpenVINO GenAI - no GPU, no cloud, no telemetry. Designed from first principles for Intel hardware, it compiles models into native NPU blobs, manages NPU memory explicitly, and ships as a single Go binary with a CLI and interactive TUI (Bubble Tea) chat mode. Models are fine-tuned and quantized to INT4 before NPU compilation; the primary model is Qwen3-4B. The companion npuserver (Python/Flask) wraps the OpenVINO GenAI runtime and exposes an OpenAI-compatible /v1/chat/completions endpoint with SSE streaming, so any OpenAI SDK client can use the local NPU with zero code changes. An extension marketplace hosted on Cloudflare (Workers + D1) lets users distribute custom tool integrations, similar to VS Code extensions but for LLM interactions. Supporting repos cover Qwen fine-tuning pipelines (PEFT/LoRA) and PyTorch-to-OpenVINO IR conversion for NPU deployment.
+
+Links: Site https://nervi.dsainvg.me, Docs https://nervi.dsainvg.me/docs, Marketplace https://nervi.dsainvg.me/marketplace, Source https://github.com/dsainvg/NERVI, Report https://projects.dsainvg.me/data/projects/nervi/reports/NERVI_Project_Report.md
+Tech: Go, Python, Flask, OpenVINO GenAI, INT4 quantisation, Bubble Tea TUI, Cloudflare Workers/D1
+
+## ORCH (orch)
+
+ORCH is a custom programming language for building and orchestrating multi-agent systems, designed end-to-end from the grammar upward rather than gluing existing frameworks. The compiler is written in OCaml (OCamlLex/OCamlYacc) with full lexer, parser, semantic analysis, and code generation stages. The compiled output is executed by a Python runtime engine distributed on PyPI as orch-lib (v3.3.1), which schedules tasks, routes agent messages, and executes state-space steps for multi-agent workflows. A TypeScript VS Code extension (orch-dsl-language-support, v2.0.0) is published on both the VS Code Marketplace and Open VSX Registry, providing lexer-matched syntax highlighting, snippets, diagnostics, hover documentation, and auto-completion. Public, versioned user documentation (MkDocs) describes the language syntax, installation, and multi-agent compile targets. Note: the compiler repository is software_eng_lab_project, not "orch".
+
+Links: Docs https://dsainvg.github.io/documentation-aeon/, PyPI https://pypi.org/project/orch-lib/, VS Code Marketplace https://marketplace.visualstudio.com/items?itemName=dsainvg.orch-dsl-language-support, Open VSX https://open-vsx.org/extension/dsainvg/orch-dsl-language-support, Source https://github.com/dsainvg/software_eng_lab_project, Report https://projects.dsainvg.me/data/projects/orch/reports/ORCH_Project_Report.md
+Tech: OCaml, OCamlYacc/Lex, Python, TypeScript, VS Code API, CI/CD (GitHub Actions)
+
+## MATNETS (matnets)
+
+MATNETS is a pure JAX research library that departs from the conventional scalar-neuron model: every neuron carries an n×n matrix. Forward propagation uses true matrix multiplication along inner indices via tensor contraction (jax.numpy.einsum, e.g. the qpak,pkc->qac form), turning weight contractions into matrix-product operators and activation functions into structural transformations, with determinant-gated activation families, matrix-native pooling, and Frobenius-scored attention. The library is built directly on JAX primitives, supporting out-of-the-box jit compilation, vectorisation (vmap), auto-differentiation (grad), and custom training loops. In benchmarks, matrix-neuron CNNs converge to ~98.5% MNIST accuracy while using roughly one-third the parameters of a standard CNN of comparable accuracy; companion work benchmarks against Capsule Networks and explored recursive matrix activations (TMRM, a failed deep feed-forward variation). Published on PyPI as matnets (v3.2.5, requires Python 3.11+, MIT license).
+
+Links: PyPI https://pypi.org/project/matnets/, Docs https://dev.dsainvg.me/MATNETS/, Source https://github.com/dsainvg/MATNETS, Report https://projects.dsainvg.me/data/projects/matnets/reports/MATNETS_Report.md
+Tech: Python, JAX (jit/vmap/grad), NumPy, einsum tensor contraction
+
+## ENIGMA (enigma)
+
+ENIGMA is a from-scratch C++17 cryptography monorepo exposed to Python via pybind11, built without external crypto dependencies (no OpenSSL; the only build-time dependency is pybind11). It provides SecureHash, a memory-hard password hashing function using a 16xN memoization table with 2^cost iterations (~70-150 ms at cost=10, independent of password length, resistant to GPU parallel brute-force), and FileCipher, a symmetric block cipher applying dynamic bit-rotation and XOR chaining over chunked byte streams, scaling from 9 MB/s single-threaded to ~22 MB/s at 22 threads while holding constant ~1.4 MB RAM. ByteCrypt exposes fast in-memory byte-stream encryption through Python bindings with the GIL released for parallel operation. The PyPI package enigma-encryption (v1.0.0) ships wheels for Python 3.10-3.13 on Windows, macOS, and Linux via trusted publishing. There is a full MkDocs documentation site (user guide, benchmarks, security warnings) and a Streamlit demo app. Note: the ciphers are deliberately unauthenticated (no MAC); the docs recommend AES-GCM or Argon2id for high-security use.
+
+Links: PyPI https://pypi.org/project/enigma-encryption/, Live demo https://enigma-ed.streamlit.app/, Docs https://dev.dsainvg.me/enigma/, Source https://github.com/dsainvg/enigma, Report https://projects.dsainvg.me/data/projects/enigma/reports/enigma_project_report.md
+Tech: C++17, pybind11, Python 3.10-3.13, MkDocs, Streamlit
+
+## AI & Machine Learning Research
+
+## IPL Mock Auction (auction_agents)
+
+A full simulation of the IPL 2026 mini auction in which 10 LLM-powered franchise agents replace human decision-makers. Each agent operates under real individual purse constraints derived from official post-retention data (2.75 Cr for Mumbai Indians up to 64.3 Cr for Kolkata Knight Riders) and competes across four player specialisations to assemble 25-player squads from a pool of 369 real auction players. The pipeline is a LangGraph state machine with five nodes: Data Loader (post-retention rosters from official IPL CSV data), Host (simulation routing), Host Assistant (cycles through player sets), Bidder Pool (10 agents bidding in greedy sequential order using Chain-of-Thought reasoning over five decision axes: valuation, utility, squad fit, rivals, purse trajectory), and Trade Master (price progression; after three consecutive passes it finalises the trade and emits a 10-dimension reasoning summary that informs subsequent bids). Run on AWS EC2 with deepseek-v3.1 via the NVIDIA API (~3 hours per full simulation) and visualised in Streamlit. The report analyses results against real-world signings: 68 of 77 real signings replicated, capped players retaining 80.5% of real price versus 12.7% for uncapped (data sparsity), exposing LLM hallucination and long-context degradation in multi-round settings.
+
+Links: Source https://github.com/dsainvg/auction_agents, Report https://projects.dsainvg.me/data/projects/auction_agents/Mock_IPL_Auction.pdf
+Tech: Python, LangGraph, DeepSeek v3.1 (NVIDIA API), Streamlit, AWS EC2, Chain-of-Thought prompting
+
+## Tic-Tac-Toe AI (hosted-tictactoe)
+
+A hosted Tic-Tac-Toe game in which the computer opponent is a neural network trained from scratch. The training sub-repository (Tic-tac-toe-model) contains the notebook, training code, and model weights: a 5-layer PyTorch feedforward network (9-256-512-64-32-9) that produces masked logits over the nine board cells so moves can only be selected on empty squares. The trained network is served live via Streamlit, so users play against the learned policy in the browser with no game heuristics or minimax involved. This project is a clean demonstration of supervised learning on game states, model export, and lightweight deployment of a trained PyTorch model as a web service.
+
+Links: Live https://tik-tac-toe.streamlit.app/, Source https://github.com/dsainvg/hosted-tictactoe, Training model https://github.com/dsainvg/Tic-tac-toe-model
+Tech: Python, PyTorch, Streamlit
+
+## Electric Charge Distribution (electric-charge-distribution)
+
+A numerical simulation of induced surface charge density on a neutral conducting sphere placed near an external point charge. The conductor surface is discretised with a 10,000-point Fibonacci lattice, and the induced charges are solved with constrained gradient descent that enforces total charge neutrality plus L2 smoothing under a multi-stage learning-rate schedule. The method is validated against an exact analytical solution computed from a 50-term Legendre series, achieving more than 97% similarity (about 3% relative discrepancy). Results are explored through an interactive 3D Plotly visualisation. This project demonstrates constrained optimisation on manifolds, scientific validation against analytic ground truth, and publication-quality scientific visualisation.
+
+Links: Source https://github.com/dsainvg/Electric-Charge-Distribution, Interactive demo https://dev.dsainvg.me/Electric-Charge-Distribution/, Case study https://projects.dsainvg.me/data/projects/electric-charge-distribution/reports/ElectricChargeDistribution_HiringReport.md
+Tech: Python, NumPy, SciPy, Pandas, Plotly 3D
+
+## Circuit Diagram Generator (circuit_diagram_generator)
+
+A Python engine that renders digital-logic circuit diagrams from structured CSV inputs. Chips (74-series ICs including AND, OR, NOT, NAND, XOR, and MUX) are declared in chips.csv and their pin-to-pin connections in connections.csv. The engine builds a graph of components and nets, applies channel-routing and layout algorithms to route orthogonal connection paths while avoiding overlaps, and renders the result to SVG using dynamically drawn standard component symbols, then rasterises to PNG (cairosvg and Pillow). This replaces manual schematic drafting for educational and engineering reports with a reproducible, scriptable pipeline.
+
+Links: Source https://github.com/dsainvg/circuit_diagram_generator
+Tech: Python, cairosvg, Pillow, graph layout/channel routing
+
+## Developer Tools & Languages
+
+## AUTO DATE (vscodeext)
+
+A VS Code extension published on the Marketplace (auto-date-file-cpp-maker, v0.0.4) that streamlines file creation for competitive programmers and C++ developers. A keybinding (Ctrl+N Ctrl+C) instantly creates a serial, date-based source file named in the YYYYMMDD-Serial format (three-digit serial auto-incrementing per day) in the workspace root, initialised from a fixed boilerplate template. The extension is written in TypeScript and bundled to a lightweight size with esbuild. It automates the tedious ritual of creating dated practice files before every contest.
+
+Links: VS Code Marketplace https://marketplace.visualstudio.com/items?itemName=dsainvg.auto-date-file-cpp-maker, Source https://github.com/dsainvg/vscodeext
+Tech: TypeScript, VS Code Extension API, Node.js, esbuild
+
+## CSES Problem Set Viewer & Tester (cses-extension)
+
+A VS Code extension that brings the CSES problem set into the editor. It provides a problem sidebar with category grouping and search by ID or name, scaffolds starter files for C, C++, Python, JavaScript, and OCaml, downloads official test cases (from cses-tests.pages.dev) into a local .tests/<problem_id> folder, and runs solutions against those tests locally with pass/fail status and failure details (Ctrl+Alt+T). Note: it is a viewer and local tester only - it does not submit solutions to the CSES judge. Published on the Marketplace (dsainvg.cses-problemset-tester, 70+ installs).
+
+Links: VS Code Marketplace https://marketplace.visualstudio.com/items?itemName=dsainvg.cses-problemset-tester, Source https://github.com/dsainvg/cses-extension
+Tech: TypeScript, VS Code Extension API, Node.js
+
+## CP Share (cp-share)
+
+A code-snippet sharing platform for competitive programmers, structured as a monorepo with three modules: a backend service, a VS Code extension for editor integration, and shared utilities. The extension captures the active editor buffer, formats it, and generates lightweight shareable links, removing the friction of pasting solutions into pastebins while preserving indentation and formatting.
+
+Links: Source https://github.com/dsainvg/cp-share
+Tech: JavaScript, Node.js, VS Code extension, snippet management
+
+## Circuit Maker (circuit-maker)
+
+A Python tool for minimal logic circuit synthesis. circuit_generator.py renders truth tables from nested gate expressions (NAND2, AND2, OR3, XOR2 variants, with named variables such as A1 and multi-output lines in the form Name : expr) into CSV files. main.py then searches for minimal circuit implementations using BFS over a configurable gate library (gates_list.csv), reporting complexity ratings and supporting don't-care output markers (X, x, ?, -, DC). It is a practical helper for digital design validation and coursework.
+
+Links: Source https://github.com/dsainvg/circuit-maker
+Tech: Python, BFS, combinatorial search, CSV processing
+
+## CSE KGP Scraper (scrap)
+
+An intelligent web scraper targeting the IIT Kharagpur CSE department website. It recursively crawls pages with depth limits, extracts links, and classifies each link via NVIDIA-hosted AI models (Qwen family) as back-links, course-relevant, or irrelevant, so crawling follows genuinely useful academic pages instead of naive heuristics. It includes an APIKeyManager with multi-key rotation and rate-limit statistics for resilient LLM API usage, plus markdown and structured data file generation from the crawled content (main_scrape.py, main_data.py, main_generate_mdfiles.py).
+
+Links: Source https://github.com/dsainvg/scrap
+Tech: Python, NVIDIA-hosted LLM API (Qwen), API-key rotation, rate limiting, web scraping
+
+## Web Apps & Utilities
+
+## JoSAA Counselling Helper (api_forjosaa)
+
+A Node.js/Express API backend, deployed on Vercel, powering a JEE counselling web app (built with a separate Next.js UI). It ranks college and branch choices for JoSAA admissions from previous years' opening and closing rank cutoffs, filtered by category, gender, and round, so applicants can generate an optimised choice-filling order instead of relying on manual lookup. The live app exposes a Find My Dream College form and a branch predictor over the processed cutoff matrices.
+
+Links: Live https://councelling.vercel.app/, Source https://github.com/dsainvg/API_forjosaa, UI repo https://github.com/Rupya2012/councelling
+Tech: JavaScript, Node.js/Express, Vercel, JSON
+
+## Semester 5 Timetable & Elective Planner (sem5)
+
+An interactive timetable and elective planner for IIT Kharagpur CSE and ECE students, built in React/TypeScript and deployed on Cloudflare. Students toggle between Computer Science and Electronics core course timetables, select ECE lab batches, and plan depth electives by subslot (A, B, E, F, G, S): chosen elective slots are highlighted directly on the weekly grid. A searchable elective directory lists slots, credits, faculty, and prerequisites for every depth elective.
+
+Links: Live https://sem5.dsainvg.me, Source https://github.com/dsainvg/timetable
+Tech: React, TypeScript, Vite, Cloudflare
+
+## Sync Duo (durable-chat-template)
+
+A collaborative two-person workspace and todo app built on Cloudflare Workers and Durable Objects. It features real-time collaboration over WebSockets with state persisted in coordinating edge workers, custom task fields, Kanban, List, Table, Calendar, and Gantt views, automated email notifications, and API-key access. A companion Go command-line client (sync-app-cli, a separate repository) supports task updates from the terminal. The edge-native design gives strong consistency and low-latency sync without database configuration.
+
+Links: Live https://todo.dsainvg.me, Source https://github.com/dsainvg/durable-chat-template, CLI companion https://github.com/dsainvg/sync-app-cli
+Tech: TypeScript, Cloudflare Workers, Durable Objects, WebSockets, Go (CLI)
+
+## VCF Generator (vcf)
+
+A Python utility that converts Excel (.xlsx) and CSV contact lists into standard VCF (vCard 3.0) files for bulk import into phones and email clients. It reads contact rows, parses name, phone, email, and organisation fields with dynamic field mapping, and emits standards-compliant vCards at thousands of rows per run. A Streamlit web UI makes the conversion accessible without the command line.
+
+Links: Live https://vcfgenarator.streamlit.app/, Source https://github.com/dsainvg/VCF
+Tech: Python, Pandas, openpyxl, vCard 3.0, Streamlit
+
+## Mail Automation (mailautomation)
+
+A Gmail bulk message sender built as a Streamlit app. It reads recipient lists from CSV, merge-tag-compiles templated messages with personalised subjects, and sends them through Gmail SMTP using app passwords, with real-time progress tracking during delivery. Suitable for newsletters, announcements, and outreach that needs per-recipient customisation at scale.
+
+Links: Live https://send-mails-automated.streamlit.app/, Source https://github.com/dsainvg/mailautomation
+Tech: Python, Gmail SMTP, Pandas, Streamlit
