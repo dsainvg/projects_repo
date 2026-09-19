@@ -1,6 +1,6 @@
 # Durga Sai (dsainvg) — Project Descriptions
 
-> Detailed companion to the short index at https://projects.dsainvg.me/llm.txt. Contains full descriptions, verified links, and tech stacks for all 18 projects. For biography, skills, experience, and contact, read https://dsainvg.me/llm.txt. Repositories: https://github.com/dsainvg
+> Detailed companion to the short index at https://projects.dsainvg.me/llms.txt. Contains full descriptions, verified links, and tech stacks for all 18 projects. For biography, skills, experience, and contact, read https://dsainvg.me/llm.txt. Repositories: https://github.com/dsainvg
 
 ## Featured
 
