@@ -1,13 +1,13 @@
 # Durga Sai (dsainvg) — Projects
 
-> LLM index for the projects of Durga Sai (github.com/dsainvg), B.Tech CS student at IIT Kharagpur. For biography, skills, experience, and contact details, read dsainvg.me/llm.txt - personal info is not duplicated here.
+> LLM index for the projects of Durga Sai (github.com/dsainvg), B.Tech CS student at IIT Kharagpur. For biography, skills, experience, and contact details, read dsainvg.me/llms.txt - personal info is not duplicated here.
 
 ## Pages
 
 - [Detailed project descriptions](https://projects.dsainvg.me/llms-fulldescription.txt): Full per-project write-ups, links, and tech stacks for all 18 projects.
 - [Sitemap](https://projects.dsainvg.me/sitemap.xml): XML sitemap of this site.
 - [Projects hub](https://projects.dsainvg.me): Browse all repositories and live demos.
-- [Portfolio](https://dsainvg.me): Personal site; LLM version at dsainvg.me/llm.txt.
+- [Portfolio](https://dsainvg.me): Personal site; LLM version at dsainvg.me/llms.txt.
 - [GitHub profile](https://github.com/dsainvg): All source repositories.
 
 ## Featured
